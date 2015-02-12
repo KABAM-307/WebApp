@@ -1,2 +1,2 @@
 # WebApp
-Repository for the webapp
+Repository for the webapp.
