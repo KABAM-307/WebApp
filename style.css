@@ -1,0 +1,101 @@
+body {
+  left: 0;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.menu {
+  background: #202024 url('menubg.jpg') repeat left top;
+  left: -285px;
+  height: 100%;
+  position: fixed;
+  width: 285px;
+}
+
+h1{
+
+	background-color: #AAF0D1;
+}
+
+/* Basic styling */
+
+.jumbotron { 
+  height: 100%;
+  -webkit-background-size: cover;
+     -moz-background-size: cover;
+       -o-background-size: cover;
+          background-size: cover;
+}
+.menu ul {
+  border-top: 1px solid #636366;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  border-bottom: 1px solid #636366;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 45px;
+  padding-bottom: 3px;
+  padding-left: 20px;
+  padding-top: 3px;
+  font-weight: bold;
+	transition: background-color 0.5s ease;
+}
+
+.menu a {
+  color: #000000;
+  font-size: 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.icon-close {
+  cursor: pointer;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.icon-menu {
+
+	height: 10px;
+	width: 120px;
+	border-color: #000000;
+	background-color: #708090;
+	border-style: solid;
+	border-radius: 5px;
+	text-align: center;	
+	color: #000000;
+	cursor: pointer;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 24px;
+	padding-bottom: 25px;
+	padding-left: 25px;
+	text-decoration: none;
+	text-transform: uppercase;
+
+}
+
+.icon-menu i {
+  margin-right: 5px;
+}
+
+#content {
+	width:750px;
+	float:right;
+	padding-top:20px;
+	padding-left:20px;
+}
+	
+#logo{
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+	
+/* This is the class that makes the menu buttons glow when the user hovers cursor above it*/
+.active{
+	background-color: #708090;
+}
