@@ -1,101 +1,82 @@
-body {
-  left: 0;
-  margin: 0;
-  overflow: hidden;
-  position: relative;
-}
-
-.menu {
-  background: #202024 url('menubg.jpg') repeat left top;
-  left: -285px;
-  height: 100%;
-  position: fixed;
-  width: 285px;
-}
-
-h1{
-
-	background-color: #AAF0D1;
-}
-
-/* Basic styling */
-
-.jumbotron { 
-  height: 100%;
-  -webkit-background-size: cover;
-     -moz-background-size: cover;
-       -o-background-size: cover;
-          background-size: cover;
-}
-.menu ul {
-  border-top: 1px solid #636366;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.menu li {
-  border-bottom: 1px solid #636366;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 45px;
-  padding-bottom: 3px;
-  padding-left: 20px;
-  padding-top: 3px;
-  font-weight: bold;
-	transition: background-color 0.5s ease;
-}
-
-.menu a {
-  color: #000000;
-  font-size: 15px;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.icon-close {
-  cursor: pointer;
-  padding-left: 10px;
-  padding-top: 10px;
-}
-
-.icon-menu {
-
-	height: 10px;
-	width: 120px;
-	border-color: #000000;
-	background-color: #708090;
-	border-style: solid;
-	border-radius: 5px;
-	text-align: center;	
-	color: #000000;
-	cursor: pointer;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
-	padding-bottom: 25px;
-	padding-left: 25px;
-	text-decoration: none;
-	text-transform: uppercase;
-
-}
-
-.icon-menu i {
-  margin-right: 5px;
-}
-
-#content {
-	width:750px;
-	float:right;
-	padding-top:20px;
-	padding-left:20px;
-}
+#header {
+		background-color:black;
+		color:white;
+		text-align:center;
+		padding:5px;
+	}
+	#page_nav {
+		line-height: 22px;
+		background-color:#eeeeee;
+		height:25px;
+		text-align:center;
+		float:top;
+		padding: 7px;
+		top: 50%;
+	}
+	#sub_nav {
+		float:left;
+		line-height:20px;
+		background-color:#eeeeee;
+		height:500px;
+		width:75px;
+		padding:10px;
+	}
+	#content {
+		width:750px;
+		float:left;
+		padding-top:20px;
+		padding-left:20px;
+	}
+	#footer {
+		background-color:black;
+		color:white;
+		clear:both;
+		text-align:center;
+		padding:5px;
+	}
 	
-#logo{
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-}
 	
-/* This is the class that makes the menu buttons glow when the user hovers cursor above it*/
-.active{
-	background-color: #708090;
-}
+	span{
+		height: 22px;
+    	width: 120px;
+    	border-color: #000000;
+    	background-color: #FFD700;
+    	border-style: solid;
+    	border-radius: 5px;	
+    	font-family: helvetica;
+    	text-align: center;
+    	display: inline-block;
+    	transition: background-color 0.5s ease;
+
+	}
+	
+	#setup{
+		margin-left: 5px;
+		margin-right: 125px;
+	}
+	a{
+	
+		text-decoration: none;
+		color: #000000;
+	}
+	#about{
+		margin-left: 125px;
+		margin-right: 5px;
+	}
+	
+	#normalbutton{
+		
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+	
+	.active{
+		
+		background-color: #708090;
+	}
+	
+	#logo{
+	
+		
+	}
+	
