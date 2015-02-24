@@ -36,21 +36,21 @@
 	}
 	
 	
-	span{
-		height: 22px;
-    	width: 120px;
+	.button{
     	border-color: #000000;
     	background-color: #FFD700;
     	border-style: solid;
     	border-radius: 5px;	
     	font-family: helvetica;
     	text-align: center;
-    	display: inline-block;
     	transition: background-color 0.5s ease;
 
 	}
 	
 	#setup{
+		height: 22px;
+    	width: 120px;
+    	display: inline-block;
 		margin-left: 5px;
 		margin-right: 125px;
 	}
@@ -60,12 +60,17 @@
 		color: #000000;
 	}
 	#about{
+		height: 22px;
+    	width: 120px;
+    	display: inline-block;
 		margin-left: 125px;
 		margin-right: 5px;
 	}
 	
 	#normalbutton{
-		
+		height: 22px;
+    	width: 120px;
+    	display: inline-block;
 		margin-left: 5px;
 		margin-right: 5px;
 	}
@@ -75,8 +80,20 @@
 		background-color: #708090;
 	}
 	
-	#logo{
-	
-		
+	#topSideButton{
+    	display: inline-block;
+		font-size: 75%;
+		height: 40px;
+    	width: 75px;	
+    	text-align: center;
+    	margin-bottom: 10px;
+	}
+	#bottomSideButton{
+    	display: inline-block;
+		font-size: 75%;
+		height: 40px;
+    	width: 75px;	
+    	text-align: center;
+    	margin-top: 10px;
 	}
 	

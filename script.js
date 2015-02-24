@@ -1,5 +1,5 @@
 var main = function() {
-	  $("span").hover(
+	  $(".button").hover(
 			  function(){
 				  $(this).addClass("active");
 			  },
