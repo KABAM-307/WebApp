@@ -13,14 +13,6 @@
 		padding: 7px;
 		top: 50%;
 	}
-	#page_nav_right {
-		text-align:right;
-		width:500px;
-	}
-	#page_nav_left {
-		text-align:left;
-		width:500px;
-	}
 	#sub_nav {
 		float:left;
 		line-height:20px;
@@ -63,12 +55,11 @@
 	}
 
 	a{
-	
 		text-decoration: none;
 		color: #000000;
 	}
 	
-	#normalbutton{
+	#navbarbutton {
 		height: 22px;
     	width: 120px;
     	display: inline-block;
@@ -76,33 +67,17 @@
 		margin-right: 5px;
 	}
 	
-	.active{
+	.active {
 		background-color: #708090;
 	}
 	
-	#topSideButton{
+	#sidebarbutton {
     	display: inline-block;
 		font-size: 75%;
 		height: 40px;
     	width: 75px;	
     	text-align: center;
     	margin-bottom: 10px;
-	}
-	#middleSideButton {
-		display: inline-block;
-		font-size: 75%;
-		height: 40px;
-    	width: 75px;	
-    	text-align: center;
-    	margin-bottom: 10px;
-	}
-	#bottomSideButton{
-    	display: inline-block;
-		font-size: 75%;
-		height: 40px;
-    	width: 75px;	
-    	text-align: center;
-    	margin-top: 10px;
 	}
 
 	
