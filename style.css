@@ -1,4 +1,4 @@
-#header {
+	#header {
 		background-color:black;
 		color:white;
 		text-align:center;
@@ -12,6 +12,14 @@
 		float:top;
 		padding: 7px;
 		top: 50%;
+	}
+	#page_nav_right {
+		text-align:right;
+		width:500px;
+	}
+	#page_nav_left {
+		text-align:left;
+		width:500px;
 	}
 	#sub_nav {
 		float:left;
@@ -35,7 +43,6 @@
 		padding:5px;
 	}
 	
-	
 	.button{
     	border-color: #000000;
     	background-color: #FFD700;
@@ -46,25 +53,19 @@
     	transition: background-color 0.5s ease;
 
 	}
-	
-	#setup{
-		height: 22px;
-    	width: 120px;
-    	display: inline-block;
-		margin-left: 5px;
-		margin-right: 125px;
+
+	.floatLeft {
+		float:	left;
 	}
+
+	.floatRight {
+		float: right;
+	}
+
 	a{
 	
 		text-decoration: none;
 		color: #000000;
-	}
-	#about{
-		height: 22px;
-    	width: 120px;
-    	display: inline-block;
-		margin-left: 125px;
-		margin-right: 5px;
 	}
 	
 	#normalbutton{
@@ -76,7 +77,6 @@
 	}
 	
 	.active{
-		
 		background-color: #708090;
 	}
 	
@@ -104,4 +104,5 @@
     	text-align: center;
     	margin-top: 10px;
 	}
+
 	
