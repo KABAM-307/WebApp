@@ -71,8 +71,14 @@ var main = function() {
 };
 $(document).ready(main);
 
-function showDiv() {
-	document.getElementById("newDiv").style.display = "block";
-	document.getElementById("content").style.display = "none";
+function showHistorical() {
+	document.getElementById("historical").style.display = "block";
+	document.getElementById("location").style.display = "none";
+	document.getElementById("basic").style.display = "none";
+}
+function showLocation() {
+	document.getElementById("location").style.display = "block";
+	document.getElementById("historical").style.display = "none";
+	document.getElementById("basic").style.display = "none";
 }
 
