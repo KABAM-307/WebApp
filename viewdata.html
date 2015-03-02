@@ -56,30 +56,65 @@
 
 
 <div id="basic" class="content">
-	<h1>
-		View Data
-	</h1>
-	<p>
-		View data here.
-	</p>
+	<h1>View Data</h1>
+	<p>Choose how to view data by selecting an option from the menu on the left.</p>
 </div>
 
 <div id="location" style="display:none;" class="content">
-	<h1>
-		View Data
-	</h1>
-	<p>
-		Search by location
-	</p>
+	<h1>View Data</h1>
+	<p>Search weather data by the location of available weather stations.</p>
+	<p>This page will display a list of all available weather stations. The user will then
+		choose which weather station(s) from which to view data.</p>
 </div>
 
 <div id="historical" style="display:none;" class="content">
-	<h1>
-		View Data
-	</h1>
-	<p>
-		Search by historical
-	</p>
+	<h1>View Data</h1>
+	<p>Search and filer historical weather data.</p>
+	
+	<form>
+		<fieldset>
+			<legend>Temperature</legend>
+			Enter a temperature range:<br>
+			low: <input type="number" name="lowTemp" size="7" min="-150" max="150">
+			high: <input type="number" name="highTemp" size="7" min="-150" max="150">
+			<br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Humidity</legend>
+			Enter a humidity range:<br>
+			low: <input type="number" name="lowHumid" size="7" min="-150" max="150">
+			high: <input type="number" name="highHumid" size="7" min="-150" max="150">
+			<br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Barometric Pressure</legend>
+			Enter a pressure range:<br>
+			low: <input type="number" name="lowPress" size="7" min="-150" max="150">
+			high: <input type="number" name="highPress" size="7" min="-150" max="150">
+			<br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Wind</legend>
+			Enter a wind speed range:<br>
+			low: <input type="number" name="lowSpeed" size="7" min="0" max="150">
+			high: <input type="number" name="highSpeed" size="7" min="0" max="150">
+			<br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Date</legend>
+			Enter a date range:<br>
+			low: <input type="date" name="lowDate" size="7" min="2015-1-1" max="2016-1-1">
+			high: <input type="date" name="highDate" size="7" min="2015-1-1" max="2016-1-1">
+			<br>
+		</fieldset>
+		<br>
+		<input type="submit" value="submit">
+	</form>
+
 </div>
 
 <div id="footer">
