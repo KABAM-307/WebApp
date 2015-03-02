@@ -1,7 +1,7 @@
 var main = function() {
 	
 	
-	// thelse bools determine whether or not the side buttons have
+	// these tools determine whether or not the side buttons have
 	// been pressed or not
 	var button1Pressed = false, button2Pressed = false, button3Pressed = false;
 	  $(".button").hover(
@@ -70,4 +70,9 @@ var main = function() {
 	  
 };
 $(document).ready(main);
+
+function showDiv() {
+	document.getElementById("newDiv").style.display = "block";
+	document.getElementById("content").style.display = "none";
+}
 
