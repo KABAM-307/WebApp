@@ -46,25 +46,43 @@
 	</div>
 
 <div id="sub_nav">
-	<span class="button" id="sidebarbutton">
+	<span class="button" id="sidebarbutton" onclick="setup_showCreate();">
 		Create a Station
 	</span>
-	<span class="button" id="sidebarbutton">
+	<span class="button" id="sidebarbutton" onclick="setup_showSource();">
 		View Source Code
 	</span>
-	<span class="button" id="sidebarbutton">
+	<span class="button" id="sidebarbutton" onclick="setup_showInfo();">
 		Product Info
 	</span>
 </div>
 
 
-<div id="content" class="content" >
+<div id="basic" class="content" >
 	<h1>
 		Learn How to Setup A Weather Station
 	</h1>
 	<p>
-		So you want to create your own weather station? Well then you've found the right page! Making a Personal Pi in the Sky is rather simple.<br>
+		So you want to create your own weather station? Well then you've found the right page! Making a Personal Pi in the Sky is rather simple.<br><br>
 		Visit the tabs on the left to view instructions to set up your own Personal Pi in the Sky!
+	</p>
+</div>
+
+<div id="create" style="display:none;" class="content">
+	<p>
+		Create
+	</p>
+</div>
+
+<div id="source" style="display:none;" class="content">
+	<p>
+		Source
+	</p>
+</div>
+
+<div id="info" style="display:none;" class="content">
+	<p>
+		Info
 	</p>
 </div>
 
