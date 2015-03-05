@@ -1,0 +1,10 @@
+{
+	"RPiData": {
+		"type":"info",
+		"pi_ID":"json1",
+		"alias":"json_tester1",
+		"owner":"bkuehn",
+		"location":"West Lafayette",
+		"share":0
+	}
+}
