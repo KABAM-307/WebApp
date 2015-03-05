@@ -49,7 +49,18 @@ class Server
 		if($type = "current") 
 		{
 			#asking for current data from the database
-			$this->controller->getCurrentData(NULL);
+			#send location to our model with a false
+			#to show only to get the most current data
+			
+			#TODO: GENERATE LOCATION
+			$location = "West Lafayette";
+			
+			$data_to_post = $this->model->pullCurrentData($location);
+			#post the data
+			$this->controller->postCurrentData($data_to_post);
+		} else
+		{
+			
 		}
 	}
 }
@@ -63,9 +74,9 @@ class Model
 	
 	#----CHANGE FOR PRODUCTION----#
 	private $dbserver = "localhost";
-	private $dbuser = "root";
-	private $dbpswd = "";
-	private $dbname = "kabam_test";
+	private $dbuser = "kabam";
+	private $dbpswd = "kabam-307";
+	private $dbname = "kabam";
 	#-----------------------------#
 	
 	private $info_tbl = "info";
@@ -103,10 +114,10 @@ class Model
 		
 		//print data table
 		if ($result_data->num_rows > 0) {
-    		echo "<table><tr><th>ID</th><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th></tr>";
+    		echo "<table><tr><th>ID</th><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
     		// output data of each row
     		while($row = $result_data->fetch_assoc()) {
-        		echo "<tr><td>".$row["ID"]."</td><td>" . $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td></tr>";
+        		echo "<tr><td>".$row["ID"]."</td><td>" . $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";
     		}
     		echo "</table>";
 		} else {
@@ -192,6 +203,7 @@ class Model
 			$temperature = $item->temp;
 			$humidity = $item->humidity;
 			$wind = $item->wind_speed;
+			$light = $item->light;
 			
 			//gotta parse that date!
 			//bad code....oops
@@ -216,7 +228,7 @@ class Model
 			$date = date("Y-m-d h:i:sa",$date_new);
 			
 			//make our query
-			$query = "INSERT INTO " . $this->data_tbl . " (pi_ID, date, wind_speed, temp, humidity) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ")";
+			$query = "INSERT INTO " . $this->data_tbl . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
 			
 			$this->callInsertQuery($query);
 		} else
@@ -227,9 +239,46 @@ class Model
 	
 	#FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
 	
-	#handles request for data and converts into SQL
+	#handles request for current data and converts into SQL
 	
-	function pullData($data)
+	function pullCurrentData($location)
+	{
+		#initialize our results array
+		$results = array("temp"=>0,"humidity"=>0,"wind"=>0,"location"=>$location,"light"=>0);
+		
+		#write query to find a pi_ID with the given location and then run
+		$query = "SELECT * FROM " . $this->info_tbl . " WHERE location='" . $location . "'";
+		
+		$pi_at_location = $this->runQuery($query);
+		
+		#get the first pi in location
+		#TODO: use coordinates to find closest location?
+		$first_pi = mysqli_fetch_assoc($pi_at_location);
+		
+		#request the most recent update from the given pi
+		
+		$query = "SELECT * FROM " . $this->data_tbl . " WHERE pi_ID='" . $first_pi["pi_ID"] . "'";
+		
+		$all_data = $this->runQuery($query);
+		
+		#get the last entry added
+		for($r = 0; $r < mysqli_num_rows($all_data) - 1; $r++)
+		{
+			mysqli_fetch_assoc($all_data);
+		}
+		#now on the last
+		$row = mysqli_fetch_assoc($all_data);
+		$results['temp'] = $row["temp"];
+		$results['humidity'] = $row["humidity"];
+		$results['wind'] = $row["wind_speed"];
+		$results['light'] = $row["light"];
+		
+		return $results;
+	}
+	
+	#handles request for filtered data and converts into SQL
+	
+	function pullFilteredData($filter)
 	{
 	}
 	
@@ -312,22 +361,14 @@ class Controller
 	{
 	}
 	
-	function getCurrentData($location)
+	#posts the current data to the website
+	function postCurrentData($data)
 	{
-		if($location == NULL)
-		{
-			$location = "West Lafayette";
-		}
-		
-		$results = array("temp"=>75,"humidity"=>2,"wind"=>6,"location"=>$location);
-		
-		//fill in the curr_data here
-		
-		echo "Currently in " . $results['location'] . "," . "<br>";
-		echo "Temperature: " . $results['temp'] . "<br>";
-		echo "Wind Speed: " . $results['wind'] . "<br>";
-		echo "Humidity: " . $results['humidity'] . "<br>";
-		
+		echo "Currently in " . $data['location'] . "," . "<br>";
+		echo "Temperature: " . $data['temp'] . "<br>";
+		echo "Wind Speed: " . $data['wind'] . "<br>";
+		echo "Humidity: " . $data['humidity'] . "<br>";
+		echo "Light: " . $data['light'] . "<br>";
 	}
 }
 
