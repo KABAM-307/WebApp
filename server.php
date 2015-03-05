@@ -323,10 +323,11 @@ class Controller
 		
 		//fill in the curr_data here
 		
+		echo "Currently in " . $results['location'] . "," . "<br>";
 		echo "Temperature: " . $results['temp'] . "<br>";
 		echo "Wind Speed: " . $results['wind'] . "<br>";
 		echo "Humidity: " . $results['humidity'] . "<br>";
-		echo "Location: " . $results['location'] . "<br>";
+		
 	}
 }
 

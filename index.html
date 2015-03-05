@@ -13,7 +13,7 @@
 		    var xmlhttp = new XMLHttpRequest();
 		     xmlhttp.onreadystatechange = function() {
 		     	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-		        	document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+		        	document.getElementById("currentData").innerHTML = xmlhttp.responseText;
 		        }
 		     }
 			 var str = "current";
@@ -69,11 +69,10 @@
 		Welcome! Personal Pi in the Sky
 	</h1>
 
-	<!--<button type="button" onclick="getCurrent()">Get Current Weather</button>-->
 	<script type="text/javascript">
 		getCurrent();
 	</script>
-	<p><span id="txtHint"></span></p>
+	<p><span id="currentData"></span></p>
 
 	<p>
 		<br>
