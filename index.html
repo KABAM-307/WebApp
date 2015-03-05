@@ -7,6 +7,20 @@
 		Personal Pi in the Sky
 	</title>
 	<link rel="shortcut icon" href="berryicon.ico">
+
+	<script>
+		function getCurrent() {
+		    var xmlhttp = new XMLHttpRequest();
+		     xmlhttp.onreadystatechange = function() {
+		     	if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		        	document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+		        }
+		     }
+			 var str = "current";
+		     xmlhttp.open("GET", "server.php?q=" + str);
+		     xmlhttp.send();   
+		}
+	</script>
 </head>
 
 <body>
@@ -49,24 +63,15 @@
 	<!-- Optional navigation bar here -->
 </div>
 
-<?php
-     echo "Test PHP text";
-?>
 
 <div id="content" class="content">
 	<h1>
 		Welcome! Personal Pi in the Sky
 	</h1>
-	<?php
-                  echo "Test PHP text";
-  ?>
-  <p>
-		Currently in West Lafayette, IN<br>
-		xx Temperature<br>
-		xx Humidity<br>
-		xx mBars<br>
-		xx mph xx direction<br>
-	</p>
+
+	<button type="button" onclick="getCurrent()">Get Current Weather</button>
+	<p><span id="txtHint"></span></p>
+	
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
