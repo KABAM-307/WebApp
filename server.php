@@ -14,21 +14,19 @@ class Server
 	# database, webapp, and the rasp pi.   #
 	#......................................#
 
+	private $model;
+	private $controller;
+	private $serverIP;
 	
 	#constructer for the server
-	function _construct()
+	function __construct()
 	{
+		$this->model = new Model();
+		$this->controller = new Controller();
 		$host = gethostname();
 		$ip = gethostbyname($host);
-		global $serverIP;
-		$serverIP = $ip;
-		echo "ServerIP: " . $serverIP . "<br>";
-		
-		#make ONE instance of the model and controller
-		global $model;
-		global $controller;
-		$model = new Model();
-		$controller = new Controller();
+		$this->serverIP = $ip;
+		return $this;
 	}
 	
 	#ask for data from pi
@@ -46,12 +44,15 @@ class Server
 	
 	#wait for request from web application
 	
-	function handleWebRequest()
+	function handleWebRequest($type)
 	{
+		if($type = "current") 
+		{
+			#asking for current data from the database
+			$this->controller->getCurrentData(NULL);
+		}
 	}
 }
-
-
 
 class Model
 {
@@ -310,19 +311,30 @@ class Controller
 	function getFilteredData()
 	{
 	}
+	
+	function getCurrentData($location)
+	{
+		if($location == NULL)
+		{
+			$location = "West Lafayette";
+		}
+		
+		$results = array("temp"=>75,"humidity"=>2,"wind"=>6,"location"=>$location);
+		
+		//fill in the curr_data here
+		
+		echo "Temperature: " . $results['temp'] . "<br>";
+		echo "Wind Speed: " . $results['wind'] . "<br>";
+		echo "Humidity: " . $results['humidity'] . "<br>";
+		echo "Location: " . $results['location'] . "<br>";
+	}
 }
 
+$server = new Server();
 
+$q = $_REQUEST["q"];
 
-function testingDatabaseInteraction()
-{
-	$model = new Model();
-	$model->changeField("alias", "changed_alias", "TEST1");
-	$model->printAllData();
-}
-
-testingDatabaseInteraction();
-
+$server->handleWebRequest($q);
 
 ?>
 
