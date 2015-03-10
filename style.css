@@ -69,7 +69,6 @@
 	
 	
 	.hidden{
-		display: none;
 		visibility: hidden;
 	}
 	@media (max-width: 800px){
@@ -78,6 +77,7 @@
 		}
 		
 		.hidden{
+			font-weight: bold;
 			visibility: visible;
 		}
 		.content{
