@@ -13,6 +13,8 @@ var main = function() {
 			  }
 	  );
 	  
+	 
+	  
 	  /*
 	   * 
 	   * Clicking a side button

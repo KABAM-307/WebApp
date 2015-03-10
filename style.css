@@ -67,6 +67,26 @@
 		margin-right: 5px;
 	}
 	
+	
+	.hidden{
+		display: none;
+		visibility: hidden;
+	}
+	@media (max-width: 800px){
+		#navbarbutton{
+			display: none;
+		}
+		
+		.hidden{
+			visibility: visible;
+		}
+		.content{
+		
+			width: 50%;
+		}
+		
+		
+	}
 	.active {
 		background-color: #708090;
 	}
