@@ -127,8 +127,8 @@ and (max-width : 320px) {
 			width: 50%;
 		}
 		.logo{
-			width: 75%;
-			height: auto;
+			width: 25%;
+			height: 25%;
 			
 		}
 }
