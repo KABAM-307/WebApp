@@ -80,10 +80,6 @@
 			font-weight: bold;
 			visibility: visible;
 		}
-		.content{
-		
-			width: 50%;
-		}
 		
 		
 	}
@@ -104,9 +100,10 @@ and (min-width : 321px) {
 			font-weight: bold;
 			visibility: visible;
 		}
-		.content{
-		
-			width: 50%;
+		#sidebarbutton {
+			font-size: 100%;
+			height: 133%;
+			width: 133%;
 		}
 }
 
@@ -122,9 +119,10 @@ and (max-width : 320px) {
 			font-weight: bold;
 			visibility: visible;
 		}
-		.content{
-		
-			width: 50%;
+		#sidebarbutton {
+			font-size: 100%;
+			height: 133%;
+			width: 133%;
 		}
 }
 
