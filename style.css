@@ -126,6 +126,11 @@ and (max-width : 320px) {
 		
 			width: 50%;
 		}
+		.logo{
+			width: 75%;
+			height: 75%;
+			
+		}
 }
 
 
