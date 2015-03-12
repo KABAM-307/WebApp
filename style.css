@@ -87,6 +87,49 @@
 		
 		
 	}
+	
+	
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+/* Styles */
+
+#navbarbutton{
+			display: none;
+		}
+		
+		.hidden{
+			font-weight: bold;
+			visibility: visible;
+		}
+		.content{
+		
+			width: 50%;
+		}
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+/* Styles */
+#navbarbutton{
+			display: none;
+		}
+		
+		.hidden{
+			font-weight: bold;
+			visibility: visible;
+		}
+		.content{
+		
+			width: 50%;
+		}
+}
+
+
+	
 	.active {
 		background-color: #708090;
 	}
