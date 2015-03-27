@@ -91,6 +91,7 @@
 	.logo_mobile{
 	
 		display: none;
+		visibility: hidden;
 	
 	}
 	
@@ -137,6 +138,7 @@ and (max-width : 320px) {
 		}
 		.logo_mobile{
 			display: block;
+			visibility: visible;
 		}
 		#header{
 			width: 50%;
