@@ -99,23 +99,14 @@
 
 /* Smartphones (landscape) ----------- */
 @media only screen 
-and (min-width : 321px) {
+and (min-width : 321px) and (max-width : 600px) {
 /* Styles */
 
-#navbarbutton{
-			display: none;
-		}
-		
-		.hidden{
-			font-weight: bold;
-			visibility: visible;
-		}
 		.content{
 		
 			width: 50%;
 		}
 }
-
 /* Smartphones (portrait) ----------- */
 @media only screen 
 and (max-width : 320px) {
@@ -132,13 +123,11 @@ and (max-width : 320px) {
 		
 			width: 50%;
 		}
-		.logo{
-			display: none;
-			
-		}
-		.logo_mobile{
-			display: block;
-			visibility: visible;
+		img{
+		
+			max-width: 50%;
+			min-width: 100px;
+			max-height: auto;
 		}
 		#header{
 			width: 50%;
@@ -148,6 +137,12 @@ and (max-width : 320px) {
 
 
 	
+		img{
+		
+			max-width: 100%;
+			min-width: 100px;
+			max-height: auto;
+		}
 	.active {
 		background-color: #708090;
 	}
