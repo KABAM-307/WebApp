@@ -123,20 +123,15 @@ and (max-width : 320px) {
 		
 			width: 50%;
 		}
-		img{
-		
-			max-width: 50%;
-			min-width: 100px;
-			max-height: auto;
-		}
-		#header{
-			width: 50%;
-			height: 50%;
-		}
 }
 
 
 	
+		#header{
+			max-width: 100%;
+			min-width: 100px;
+			max-height: auto;
+		}
 		img{
 		
 			max-width: 100%;
