@@ -88,6 +88,11 @@
 		
 	}
 	
+	.logo_mobile{
+	
+		display: none;
+	
+	}
 	
 
 
@@ -127,9 +132,11 @@ and (max-width : 320px) {
 			width: 50%;
 		}
 		.logo{
-			width: 50%;
-			height: 50%;
+			display: none;
 			
+		}
+		.logo_mobile{
+			display: block;
 		}
 		#header{
 			width: 50%;
