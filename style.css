@@ -127,9 +127,13 @@ and (max-width : 320px) {
 			width: 50%;
 		}
 		.logo{
-			width: 250px;
-			height: 24px;
+			width: 50%;
+			height: 50%;
 			
+		}
+		#header{
+			width: 50%;
+			height: 50%;
 		}
 }
 
