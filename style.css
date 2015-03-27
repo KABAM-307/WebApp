@@ -129,13 +129,11 @@ and (max-width : 320px) {
 	
 		#header{
 			max-width: 100%;
-			min-width: 100px;
 			max-height: auto;
 		}
 		img{
 		
 			max-width: 100%;
-			min-width: 100px;
 			max-height: auto;
 		}
 	.active {
