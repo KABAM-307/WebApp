@@ -3,6 +3,8 @@
 		color:white;
 		text-align:center;
 		padding:5px;
+			max-width: 100%;
+			max-height: auto;
 	}
 	#page_nav {
 		line-height: 22px;
@@ -124,13 +126,6 @@ and (max-width : 320px) {
 			width: 50%;
 		}
 }
-
-
-	
-		#header{
-			max-width: 100%;
-			max-height: auto;
-		}
 		img{
 		
 			max-width: 100%;
