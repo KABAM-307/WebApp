@@ -3,8 +3,7 @@
 		color:white;
 		text-align:center;
 		padding:5px;
-			max-width: 200%;
-			max-height: auto;
+		min-width: 400px;
 	}
 	#page_nav {
 		line-height: 22px;
@@ -14,8 +13,7 @@
 		float:top;
 		padding: 7px;
 		top: 50%;
-			max-width: 200%;
-			max-height: auto;
+		min-width: 400px;
 	}
 	#sub_nav {
 		float:left;
