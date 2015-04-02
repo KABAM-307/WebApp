@@ -3,17 +3,14 @@
 		color:white;
 		text-align:center;
 		padding:5px;
-		min-width: 400px;
 	}
 	#page_nav {
 		line-height: 22px;
 		background-color:#eeeeee;
 		height:25px;
 		text-align:center;
-		float:top;
 		padding: 7px;
 		top: 50%;
-		min-width: 400px;
 	}
 	#sub_nav {
 		float:left;
