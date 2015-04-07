@@ -63,7 +63,7 @@
 				$date = getdate();
 				print_r($date);
 				echo '<br>';
-				$maxDate = "$date[year]-$date[mon]-$date[day]";
+				$maxDate = $date[year]. "-" . $date[mon] . "-" . $date[day];
 				echo '$maxDate';
 				echo 'low: <input type="date" name="lowDate" size="7" min="2015-1-1" max=$maxDate value="2015-1-1">';
 				echo 'high: <input type="date" name="highDate" size="7" min="2015-1-1" max=$maxDate value=$maxDate>';
