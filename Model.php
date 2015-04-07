@@ -25,14 +25,12 @@ $data_tbl = "data";
 
 #testing function to print out all the records in the database
 function printQueryData($result_data) {
-   echo "<br><br>DATA TABLE<br><br>";
-
     //print data table
     if ($result_data->num_rows > 0) {
-        echo "<table><tr><th>ID</th><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
+        echo "<table><tr><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
         // output data of each row
         while($row = $result_data->fetch_assoc()) {
-            echo "<tr><td>".$row["ID"]."</td><td>" . $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";
+            echo "<tr><td>". $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";
         }
         echo "</table>";
     } else {
