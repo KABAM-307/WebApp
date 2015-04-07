@@ -23,14 +23,14 @@
 	    var xmlhttp = new XMLHttpRequest();
 	    xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById("currentData").innerHTML = xmlhttp.responseText;
+				document.getElementById("data").innerHTML = xmlhttp.responseText;
 			}
    		}
-		document.getElementbyId("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
+		document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
     	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
 		xmlhttp.send();
 	}
-	</script>
+</script>
 </head>
 
 <body>
