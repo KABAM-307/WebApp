@@ -61,6 +61,7 @@
 				print_r(getdate());
 				echo '<br>';
 				$date = getdate();
+				print_r($date);
 				echo '<br>';
 				$maxDate = "$date[year]-$date[mon]-$date[day]";
 				echo '$maxDate';
