@@ -39,10 +39,10 @@
 		</fieldset>
 		<br>
 		<fieldset>
-			<legend>Barometric Pressure</legend>
-			Enter a pressure range:<br>
-			low: <input type="number" name="lowPress" size="7" min="-150" max="150" value="0">
-			high: <input type="number" name="highPress" size="7" min="-150" max="150" value="100">
+			<legend>Light</legend>
+			Enter a light range:<br>
+			low: <input type="number" name="lowLight" size="7" min="-150" max="150" value="0">
+			high: <input type="number" name="highLight" size="7" min="-150" max="150" value="100">
 			<br>
 		</fieldset>
 		<br>
