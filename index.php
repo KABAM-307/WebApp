@@ -17,7 +17,7 @@
 				document.getElementById("currentData").innerHTML = xmlhttp.responseText;
 			}
    		}
-		document.getElementbyId("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
+		document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
     	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
 		xmlhttp.send();
 	}
