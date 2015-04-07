@@ -24,17 +24,45 @@ $data_tbl = "data";
 
 
 #testing function to print out all the records in the database
+function printQueryData($result_info, $result_data) {
+    echo "INFO TABLE<br><br>";
+
+    //print info table
+    if ($result_info->num_rows > 0) {
+        echo "<table><tr><th>PI_ID</th><th>Alias</th><th>Owner</th><th>Location</th><th>Share</th></tr>";
+        // output data of each row
+        while($row = $result_info->fetch_assoc()) {
+            echo "<tr><td>".$row["pi_ID"]."</td><td>" . $row["alias"]. "</td><td>" . $row["owner"] . "</td><td>" . $row["location"] . "</td><td>" . $row["share"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    echo "<br><br>DATA TABLE<br><br>";
+
+    //print data table
+    if ($result_data->num_rows > 0) {
+        echo "<table><tr><th>ID</th><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
+        // output data of each row
+        while($row = $result_data->fetch_assoc()) {
+            echo "<tr><td>".$row["ID"]."</td><td>" . $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+}
 
 function printAllData()
 {
     //get results of select all query
 
-    $query = "SELECT * FROM " . $this->info_tbl;
+    $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
 
-    $result_info = $this->runQuery($query);
+    $result_info = runQuery($query);
 
-    $query = "SELECT * FROM " . $this->data_tbl;
-    $result_data = $this->runQuery($query);
+    $query = "SELECT * FROM " . $GLOBALS['data_tbl'];
+    $result_data = runQuery($query);
 
     echo "INFO TABLE<br><br>";
 
@@ -69,7 +97,7 @@ function printAllData()
 function runQuery($query)
 {
     #make connection to the database
-    $dbconnection = new mysqli($this->dbserver, $this->dbuser, $this->dbpswd, $this->dbname);
+    $dbconnection = new mysqli($GLOBALS['dbserver'], $GLOBALS['dbuser'], $GLOBALS['dbpswd'], $GLOBALS['dbname']);
 
     #check connection
     if($dbconnection->connect_error)
@@ -99,7 +127,7 @@ function callInsertQuery($query)
 {
 
     #make query to database
-    $result = $this->runQuery($query);
+    $result = runQuery($query);
 
     if($result == TRUE)
     {
@@ -119,7 +147,7 @@ function addJSONData($json_file)
     //figure out if this is an init call or a data call
     $json = json_decode($json_file);
     $item = $json->RPiData;
-    if($item->type == $this->info_tbl)
+    if($item->type == $GLOBALS['info_tbl'])
     {
         //this is an initialization call
         $pi_ID = $item->pi_ID;
@@ -130,11 +158,11 @@ function addJSONData($json_file)
 
         //going to add data to the info database
 
-        $query = "INSERT INTO " . $this->info_tbl . " (pi_ID, alias, owner, location, share) VALUES ('" . $pi_ID . "', '" . $alias . "', '" . $owner . "', '" . $location . "', " . $share . ")";
+        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, location, share) VALUES ('" . $pi_ID . "', '" . $alias . "', '" . $owner . "', '" . $location . "', " . $share . ")";
 
-        $this->callInsertQuery($query);
+        callInsertQuery($query);
 
-    } elseif($item->type == $this->data_tbl)
+    } elseif($item->type == $GLOBALS['data_tbl'])
     {
         //this is a data input call
         $pi_ID = $item->pi_ID;
@@ -167,9 +195,9 @@ function addJSONData($json_file)
         $date = date("Y-m-d h:i:sa",$date_new);
 
         //make our query
-        $query = "INSERT INTO " . $this->data_tbl . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
+        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
 
-        $this->callInsertQuery($query);
+        callInsertQuery($query);
     } else
     {
         //problem with JSON file
@@ -186,9 +214,9 @@ function pullCurrentData($location)
     $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"location"=>$location,"light"=>0);
 
     #write query to find a pi_ID with the given location and then run
-    $query = "SELECT * FROM " . $this->info_tbl . " WHERE location='" . $location . "'";
+    $query = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE location='" . $location . "'";
 
-    $pi_at_location = $this->runQuery($query);
+    $pi_at_location = runQuery($query);
 
     #get the first pi in location
     #TODO: use coordinates to find closest location?
@@ -196,9 +224,9 @@ function pullCurrentData($location)
 
     #request the most recent update from the given pi
 
-    $query = "SELECT * FROM " . $this->data_tbl . " WHERE pi_ID='" . $first_pi["pi_ID"] . "'";
+    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $first_pi["pi_ID"] . "'";
 
-    $all_data = $this->runQuery($query);
+    $all_data = runQuery($query);
 
     #get the last entry added
     for($r = 0; $r < mysqli_num_rows($all_data) - 1; $r++)
@@ -219,6 +247,51 @@ function pullCurrentData($location)
 
 function pullFilteredData($filter)
 {
+    /*
+     * $filter = array("alias"=>$_POST["alias"],"city"=>$_POST["city"],"state"=>$_POST["state"],"lowTemp"=>$_POST["lowTemp"],"highTemp"=>$_POST["highTemp"],
+        "lowHumid"=>$_POST["lowHumid"],"highHumid"=>$_POST["highHumid"],"lowLight"=>$_POST["lowLight"],"highLight"=>$_POST["highLight"],
+        "lowSpeed"=>$_POST["lowSpeed"],"highSpeed"=>$_POST["highSpeed"],"lowDate"=>$_POST["lowDate"],"highDate"=>$_POST["highDate"]);
+     */
+
+    //after receiving a filter we need to run a query
+    //first grab PI_IDs that match what we need
+    $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
+    //check if we need
+    if ($filter["alias"] != "none") {
+        //using alias
+        $query = $query . " WHERE alias='" . $filter["alias"] . "'";
+    }
+    //TODO:add location filtering here
+    $pi_results = runQuery($query);
+    $pis = mysqli_fetch_assoc($pi_results);
+    if ($pi_results->num_rows == 1) {
+        //finish second part of query using pi_id
+        $finalquery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $pis["pi_ID"] . "'";
+    } else if ($pi_results->num_rows != 0) {
+        $count = 1;
+        $finalquery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID IN ('" . $pis["pi_ID"] . "', ";
+        for (; $count < $pi_results->num_rows; $count = $count + 1) {
+            $pis = mysqli_fetch_assoc($pi_results);
+            $finalquery = $finalquery . $pis["pi_ID"] . "'";
+            if ($count == $pi_results->num_rows - 1) {
+                $finalquery = $finalquery . ")";
+            } else {
+                $finalquery = $finalquery . ", ";
+            }
+        }
+    } else { return null; }
+    //add other filters that they want
+    //temperature
+    $finalquery = $finalquery . ", temp BETWEEN " . $filter["lowTemp"] . " AND " . $filter["highTemp"];
+    //humidity
+    $finalquery = $finalquery . ", humidity BETWEEN " . $filter["lowHumid"] . " AND " . $filter["highHumid"];
+    //pressure
+    $finalquery = $finalquery . ", light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"];
+    //wind speed
+    $finalquery = $finalquery . ", wind BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"];
+    //TODO: Add date stuff
+    $results = runQuery($finalquery);
+    return $results;
 }
 
 #returns data from database found from query
