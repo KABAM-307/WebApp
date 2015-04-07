@@ -1,6 +1,6 @@
-<?php require($DOCUMENT_ROOT . "./header.php"); ?>
+<?php include_once('./header.php'); ?>
 
-<?php require($DOCUMENT_ROOT . "./subnav.php"); ?>
+<?php include_once('./subnav.php'); ?>
 
 <div id="content" class="content">
 	<h1>
