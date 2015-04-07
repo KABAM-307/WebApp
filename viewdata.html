@@ -134,10 +134,10 @@
 				$date = getdate(date("U"));
 				print_r(getdate());
 				$maxDate = "$date[year]-$date[month]-$date[day]";
-				echo "$maxDate";
+				echo $maxDate;
 				<br>
-				echo "low: <input type="date" name="lowDate" size="7" min="2015-1-1" max=$maxDate value="2015-1-1">"
-				echo "high: <input type="date" name="highDate" size="7" min="2015-1-1" max=$maxDate value=$maxDate>"
+				low: <input type="date" name="lowDate" size="7" min="2015-1-1" max=$maxDate value="2015-1-1">
+				high: <input type="date" name="highDate" size="7" min="2015-1-1" max=$maxDate value=$maxDate>
 			?>
 			<br>
 		</fieldset>
