@@ -1,6 +1,6 @@
-<?php require($DOCUMENT_ROOT . "header.php"); ?>
+<?php require($DOCUMENT_ROOT . "./header.php"); ?>
 
-<?php require($DOCUMENT_ROOT . "subnav.php"); ?>
+<?php require($DOCUMENT_ROOT . "./subnav.php"); ?>
 
 <div id="content" class="content">
 	<h1>
@@ -21,4 +21,4 @@
 	</p>
 </div>
 
-<?php require($DOCUMENT_ROOT . "footer.php"); ?>
+<?php include_once('./footer.php'); ?>
