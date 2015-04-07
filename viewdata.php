@@ -57,7 +57,7 @@
 		<fieldset>
 			<legend>Date</legend>
 			Enter a date range:<br>
-			low: <input type="date" name="lowDate" size="7" min="2015-1-1" max="<?php echo date("Y-m-d");?>" value="2015-1-1">
+			low: <input type="date" name="lowDate" size="7" min="2015-1-1" max="<?php echo date("Y-m-d");?>" value="2015-01-01">
 			high: <input type="date" name="highDate" size="7" min="2015-1-1" max="<?php echo date("Y-m-d");?>" value="<?php echo date("Y-m-d");?>">			
 			<br>
 		</fieldset>
