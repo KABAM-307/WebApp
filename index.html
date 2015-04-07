@@ -12,29 +12,25 @@
 	<script type="application/javascript" src="main.js"></script>
 	-->
 	<script>
-	var lat = 0;
-	var lon = 0;
-	
 	function getCurrent() {
+		var lat = 0;
+		var lon = 0;
 		if (navigator.geolocation) {
-	  		navigator.geolocation.getCurrentPosition(storePosition);
+	  		navigator.geolocation.getCurrentPosition(function(position) {
+    			lat = position.coords.latitude;
+       			lon = position.coords.longitude;
+       			var xmlhttp = new XMLHttpRequest();
+	   			xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						document.getElementById("data").innerHTML = xmlhttp.responseText;
+					}
+   				}
+				xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
+				xmlhttp.send();
+       			});
    		}
 
-	    var xmlhttp = new XMLHttpRequest();
-	    xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				document.getElementById("data").innerHTML = xmlhttp.responseText;
-			}
-   		}
-		//document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
-    	//document.getElementById("test").innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;	
-    	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
-		xmlhttp.send();
-	}
-	function storePosition(position) {
-		lat = position.coords.latitude;
-       	lon = position.coords.longitude;
-   		 document.getElementById("test").innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;	
+	    
 	}
 </script>
 </head>
