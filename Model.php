@@ -64,30 +64,29 @@ function printAllData()
     $query = "SELECT * FROM " . $GLOBALS['data_tbl'];
     $result_data = runQuery($query);
 
-    echo "INFO TABLE<br><br>";
-
     //print info table
     if ($result_info->num_rows > 0) {
+
+        echo "INFO TABLE<br><br>";
         echo "<table><tr><th>PI_ID</th><th>Alias</th><th>Owner</th><th>Location</th><th>Share</th></tr>";
         // output data of each row
         while($row = $result_info->fetch_assoc()) {
             echo "<tr><td>".$row["pi_ID"]."</td><td>" . $row["alias"]. "</td><td>" . $row["owner"] . "</td><td>" . $row["location"] . "</td><td>" . $row["share"] . "</td></tr>";
         }
         echo "</table>";
-    } else {
-        echo "0 results";
     }
-    echo "<br><br>DATA TABLE<br><br>";
-
     //print data table
     if ($result_data->num_rows > 0) {
+        echo "<br><br>DATA TABLE<br><br>";
         echo "<table><tr><th>ID</th><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
         // output data of each row
         while($row = $result_data->fetch_assoc()) {
             echo "<tr><td>".$row["ID"]."</td><td>" . $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";
         }
         echo "</table>";
-    } else {
+    }
+
+    if ($result_info->num_rows == 0 && $result_data->num_rows == 0) {
         echo "0 results";
     }
 
@@ -290,7 +289,6 @@ function pullFilteredData($filter)
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
-    echo $finalquery;
     $results = runQuery($finalquery);
     return $results;
 }
