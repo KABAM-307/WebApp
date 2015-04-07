@@ -14,12 +14,13 @@
 	<script>
 	var lat = 0;
 	var lon = 0;
+	function storePosition(position) {
+		lat = position.coords.latitude;
+       	lon = position.coords.longitude;
+	}
 	function getCurrent() {
 		if (navigator.geolocation) {
-	  		navigator.geolocation.getCurrentPosition(function(position) {
-    			lat = position.coords.latitude;
-       			lon = position.coords.longitude;
-       		});
+	  		navigator.geolocation.getCurrentPosition(storePosition(position));
    		}
 
 	    var xmlhttp = new XMLHttpRequest();
