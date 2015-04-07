@@ -125,6 +125,17 @@ function callInsertQuery($query)
 
 }
 
+#convert zipcode to latitude and longitude
+function getLnt($zip){
+    $url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($zip)."&sensor=false";
+    $result_string = file_get_contents($url);
+    $result = json_decode($result_string, true);
+    $result1[]=$result['results'][0];
+    $result2[]=$result1[0]['geometry'];
+    $result3[]=$result2[0]['location'];
+    return $result3[0];
+}
+
 #receives data in JSON file and converts to SQL
 
 function addJSONData($json_file)
@@ -138,12 +149,15 @@ function addJSONData($json_file)
         $pi_ID = $item->pi_ID;
         $alias = $item->alias;
         $owner = $item->owner;
-        $location = $item->location;
+        $zip = $item->location;
         $share = $item->share;
 
+        //USE ZIPCODE to find latitude and longitude
+        $llresults = getLnt($zip);
         //going to add data to the info database
 
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, location, share) VALUES ('" . $pi_ID . "', '" . $alias . "', '" . $owner . "', '" . $location . "', " . $share . ")";
+        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('"
+            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $share . ", " . $llresults['lat'] . ", " . $llresults['lng'] . ")";
 
         callInsertQuery($query);
 
@@ -189,27 +203,62 @@ function addJSONData($json_file)
     }
 }
 
+
+#find distance between two lat/lon points
+function getDistance($lat1, $lon1, $lat2, $lon2, $unit) {
+    $theta = $lon1 - $lon2;
+    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
+    $dist = acos($dist);
+    $dist = rad2deg($dist);
+    $miles = $dist * 60 * 1.1515;
+    $unit = strtoupper($unit);
+    if ($unit == "K") {
+        return ($miles * 1.609344);
+    } else if ($unit == "N") {
+      return ($miles * 0.8684);
+    } else {
+        return $miles;
+    }
+}
+
+
+#FINDS THE CLOSEST PI_ID to the given latitude and longitude
+function findClosestPi($lat, $long)
+{
+    $pi_ID = 0;
+    //first run a query requesting all information in the info table
+    $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
+    $all_data = runQuery($query);
+    $min_dist = -1;
+    for ($r = 0; $r < mysqli_num_rows($all_data); $r++) {
+        $row = mysqli_fetch_assoc($all_data);
+        $row_lat = $row["Latitude"];
+        $row_lon = $row["Longitude"];
+        $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
+        if ($r == 0 || $row_dist < $min_dist) {
+            $pi_ID = $row["pi_ID"];
+            $min_dist = $row_dist;
+        }
+    }
+    return  $pi_ID;
+}
+
 #FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
 
 #handles request for current data and converts into SQL
 
-function pullCurrentData($location)
+function pullCurrentData($lat, $long)
 {
     #initialize our results array
-    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"location"=>$location,"light"=>0);
+    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"zipcode"=>0,"light"=>0);
 
-    #write query to find a pi_ID with the given location and then run
-    $query = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE location='" . $location . "'";
 
-    $pi_at_location = runQuery($query);
-
-    #get the first pi in location
-    #TODO: use coordinates to find closest location?
-    $first_pi = mysqli_fetch_assoc($pi_at_location);
+    //FIND LOCATION THINGS
+    $closest_Pi = findClosestPi($lat,$long);
 
     #request the most recent update from the given pi
 
-    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $first_pi["pi_ID"] . "'";
+    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $closest_Pi . "'";
 
     $all_data = runQuery($query);
 
@@ -224,6 +273,7 @@ function pullCurrentData($location)
     $results['humidity'] = $row["humidity"];
     $results['wind'] = $row["wind_speed"];
     $results['light'] = $row["light"];
+    $results['zipcode'] = $row["zipcode"];
 
     return $results;
 }
@@ -327,5 +377,15 @@ function removePi($pi_id)
     $result = $this->runQuery($query_children);
     $result = $this->runQuery($query_parent);
 
+}
+
+#posts the current data to the website
+function postCurrentData($data)
+{
+    echo "Currently in " . $data['zipcode'] . " zipcode" . "<br>";
+    echo "Temperature: " . $data['temp'] . "<br>";
+    echo "Wind Speed: " . $data['wind'] . "<br>";
+    echo "Humidity: " . $data['humidity'] . "<br>";
+    echo "Light: " . $data['light'] . "<br>";
 }
 ?>

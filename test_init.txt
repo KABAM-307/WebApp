@@ -4,7 +4,7 @@
 		"pi_ID":"json1",
 		"alias":"json_tester1",
 		"owner":"bkuehn",
-		"location":"West Lafayette",
+		"location":47906,
 		"share":0
 	}
 }
