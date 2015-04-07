@@ -59,9 +59,9 @@
 			Enter a date range:<br>
 			<?php
 				print_r(getdate());
-				<br>
+				echo '<br>';
 				$date = getdate();
-				<br>
+				echo '<br>';
 				echo 'low: <input type="date" name="lowDate" size="7" min="2015-1-1" max="2015-1-1" value="2015-1-1">';
 				echo 'high: <input type="date" name="highDate" size="7" min="2015-1-1" max="2015-1-1" value="2015-1-1">';
 			?>
