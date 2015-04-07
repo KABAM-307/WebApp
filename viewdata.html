@@ -46,16 +46,7 @@
 		</a>
 	</div>
 
-<div id="sub_nav">
-	<!--
-	<span class="button" id="sidebarbutton" onclick="view_showLocation();">
-		Search by Location
-	</span>
-	<span class="button" id="sidebarbutton" onclick="view_showHistorical();">
-		View Historical
-	</span>
-	-->
-	
+<div id="sub_nav">	
 	
 	<a href="index.html">
 			<span class="button hidden" id="sidebarbutton">
@@ -84,26 +75,26 @@
 		</a>
 </div>
 
-<!--
-<div id="basic" class="content">
-	<h1>View Data</h1>
-	<p>Choose how to view data by selecting an option from the menu on the left.</p>
-</div>
-
-<div id="location" style="display:none;" class="content">
-	<h1>View Data</h1>
-	<p>Search weather data by the location of available weather stations.</p>
-	<p>This page will display a list of all available weather stations. The user will then
-		choose which weather station(s) from which to view data.</p>
-</div>
-
-<div id="historical" style="display:none;" class="content">
--->
 <div id="basic" class="content">
 	<h1>View Data</h1>
 	<p>Search and filer historical weather data.</p>
 	
-	<form>
+	<form action="filterData.php" method="post">
+		<fieldset>
+			<legend>Weather Station Alias</legend>
+			Enter a weather station alias:<br>
+			alias: <input type="text" name="alias">
+			<br>
+		</fieldset>
+		<br>
+		<fieldset>
+			<legend>Location:<br>
+			Enter a location:<br>
+			city: <input type="text" name="city">
+			state: <input type="text" name="state">
+			<br>
+		</fieldset>
+		<br>
 		<fieldset>
 			<legend>Temperature</legend>
 			Enter a temperature range:<br>
