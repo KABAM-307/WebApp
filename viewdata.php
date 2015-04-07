@@ -1,5 +1,7 @@
 <?php include_once('./header.php'); ?>
 
+<?php include_once('./subnav.php'); ?>
+
 <div id="basic" class="content">
 	<h1>View Data</h1>
 	<p>Search and filer historical weather data.</p>

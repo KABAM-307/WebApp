@@ -1,5 +1,7 @@
 <?php include_once('./header.php'); ?>
 
+<?php include_once('./subnav.php'); ?>
+
 <div id="content" class="content">
 	<h1>
 		About Us
