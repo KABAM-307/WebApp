@@ -12,24 +12,24 @@
 	<script type="application/javascript" src="main.js"></script>
 	-->
 	<script>
-		function getCurrent() {
-			if (navigator.geolocation) {
-		  		navigator.geolocation.getCurrentPosition(function(position) {
-  		  			var lat = position.coords.lat;
-  	     			var lon = position.coords.lon;
-  	     		});
-  	 		}
+	function getCurrent() {
+		if (navigator.geolocation) {
+	  		navigator.geolocation.getCurrentPosition(function(position) {
+    			var lat = position.coords.lat;
+       			var lon = position.coords.lon;
+       		});
+   		}
 
-		    var xmlhttp = new XMLHttpRequest();
-		    xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					document.getElementById("currentData").innerHTML = xmlhttp.responseText;
-				}
-   			}
-	
-    		xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
-			xmlhttp.send();
-		}
+	    var xmlhttp = new XMLHttpRequest();
+	    xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				document.getElementById("currentData").innerHTML = xmlhttp.responseText;
+			}
+   		}
+		document.getElementbyId("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
+    	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
+		xmlhttp.send();
+	}
 	</script>
 </head>
 
