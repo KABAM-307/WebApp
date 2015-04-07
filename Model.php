@@ -288,7 +288,7 @@ function pullFilteredData($filter)
     //pressure
     $finalquery = $finalquery . " AND (light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"] . ")";
     //wind speed
-    $finalquery = $finalquery . " AND (wind BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
+    $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
     echo $finalquery;
     $results = runQuery($finalquery);
