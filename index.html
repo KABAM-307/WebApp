@@ -14,10 +14,7 @@
 	<script>
 	var lat = 0;
 	var lon = 0;
-	function storePosition(position) {
-		lat = position.coords.latitude;
-       	lon = position.coords.longitude;
-	}
+	
 	function getCurrent() {
 		if (navigator.geolocation) {
 	  		navigator.geolocation.getCurrentPosition(storePosition);
@@ -33,6 +30,10 @@
     	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
 		xmlhttp.send();
 	}
+	function storePosition(position) {
+		lat = position.coords.latitude;
+       	lon = position.coords.longitude;
+	}
 	
 	function getLocation() {
    	 if (navigator.geolocation) {
@@ -40,8 +41,10 @@
   	  }
 	}
 	function showPosition(position) {
-   		 document.getElementById("test").innerHTML = "Latitude: " + position.coords.latitude + 
-   		 "<br>Longitude: " + position.coords.longitude;	
+		lat = position.coords.latitude;
+       	lon = position.coords.longitude;
+   		 document.getElementById("test").innerHTML = "Latitude: " + lat + 
+   		 "<br>Longitude: " + lon;	
 	}
 </script>
 </head>
