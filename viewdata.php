@@ -26,7 +26,7 @@
 			<legend>Temperature</legend>
 			Enter a temperature range:<br>
 			low: <input type="number" name="lowTemp" size="7" min="-150" max="150" value="0">
-			high: <input type="number" name="highTemp" size="7" min="-150" max="150" value="0">
+			high: <input type="number" name="highTemp" size="7" min="-150" max="150" value="100">
 			<br>
 		</fieldset>
 		<br>
