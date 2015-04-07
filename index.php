@@ -17,12 +17,14 @@
 				document.getElementById("currentData").innerHTML = xmlhttp.responseText;
 			}
    		}
-
+		document.getElementbyId("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
     	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
 		xmlhttp.send();
 	}
 </script>
-	
+
+<p id="test"></p>
+
 <div id="content" class="content">
 	<h1>
 		Welcome! Personal Pi in the Sky
