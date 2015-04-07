@@ -240,6 +240,7 @@ function findClosestPi($lat, $long)
             $min_dist = $row_dist;
         }
     }
+    echo "Closest pi has id of " . $pi_ID . " with a distance of " . $min_dist . " miles";
     return  $pi_ID;
 }
 
