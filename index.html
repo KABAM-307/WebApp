@@ -26,28 +26,16 @@
 				document.getElementById("data").innerHTML = xmlhttp.responseText;
 			}
    		}
-		//document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
+		document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
     	xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
 		xmlhttp.send();
 	}
 	function storePosition(position) {
 		lat = position.coords.latitude;
        	lon = position.coords.longitude;
-   		 document.getElementById("test").innerHTML = "Latitude: " + lat + 
-   		 "<br>Longitude: " + lon;	
+   		// document.getElementById("test").innerHTML = "Latitude: " + lat + 
+   		 //"<br>Longitude: " + lon;	
 	}
-	
-	/**function getLocation() {
-   	 if (navigator.geolocation) {
-  	      navigator.geolocation.getCurrentPosition(showPosition);
-  	  }
-	}
-	function showPosition(position) {
-		lat = position.coords.latitude;
-       	lon = position.coords.longitude;
-   		 document.getElementById("test").innerHTML = "Latitude: " + lat + 
-   		 "<br>Longitude: " + lon;	
-	}*/
 </script>
 </head>
 
@@ -124,7 +112,6 @@
 
 	<script type="text/javascript">
 		getCurrent();
-		//getLocation();
 	</script>
 	<p><span id="data"></span></p>
 	<p><span id="test"></span></p>
