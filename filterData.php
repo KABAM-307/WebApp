@@ -1,4 +1,9 @@
 <?php
+    include_once('./header.php');
+    include_once('./subnav.php');
+?>
+<div id="basic" class="content">
+<?php
 /**
  * Created by PhpStorm.
  * User: Bridgette
@@ -16,4 +21,8 @@
     //we have a query result so we
     printQueryData($result);
 
+?>
+</div>
+<?php
+    include_once('./footer.php');
 ?>
