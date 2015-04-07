@@ -282,14 +282,15 @@ function pullFilteredData($filter)
     } else { return null; }
     //add other filters that they want
     //temperature
-    $finalquery = $finalquery . ", temp BETWEEN " . $filter["lowTemp"] . " AND " . $filter["highTemp"];
+    $finalquery = $finalquery . " AND (temp BETWEEN " . $filter["lowTemp"] . " AND " . $filter["highTemp"] . ")";
     //humidity
-    $finalquery = $finalquery . ", humidity BETWEEN " . $filter["lowHumid"] . " AND " . $filter["highHumid"];
+    $finalquery = $finalquery . " AND (humidity BETWEEN " . $filter["lowHumid"] . " AND " . $filter["highHumid"] . ")";
     //pressure
-    $finalquery = $finalquery . ", light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"];
+    $finalquery = $finalquery . " AND (light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"] . ")";
     //wind speed
-    $finalquery = $finalquery . ", wind BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"];
+    $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
+    echo $finalquery;
     $results = runQuery($finalquery);
     return $results;
 }
