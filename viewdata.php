@@ -57,15 +57,8 @@
 		<fieldset>
 			<legend>Date</legend>
 			Enter a date range:<br>
-			<?php
-				$date = getdate(date("U"));
-				print_r(getdate());
-				$maxDate = "$date[year]-$date[month]-$date[day]";
-				echo $maxDate;
-				<br>
-				low: <input type="date" name="lowDate" size="7" min="2015-1-1" max=$maxDate value="2015-1-1">
-				high: <input type="date" name="highDate" size="7" min="2015-1-1" max=$maxDate value=$maxDate>
-			?>
+			low: <input type="date" name="lowDate" size="7" min="2015-1-1" max="2015-1-1" value="2015-1-1">
+			high: <input type="date" name="highDate" size="7" min="2015-1-1" max="2015-1-1" value="2015-1-1">
 			<br>
 		</fieldset>
 		<br>
