@@ -33,27 +33,27 @@
 	</div>
 
 	<div id="page_nav">
-		<a href="index.html">
+		<a href="index.php">
 			<span class="button floatLeft" id="navbarbutton">
 				Home
 			</span>
 		</a>
-		<a href="viewdata.html">
+		<a href="viewdata.php">
 			<span class="button floatLeft" id="navbarbutton">
 				View Data
 			</span>
 		</a>
-		<a href="setup.html">
+		<a href="setup.php">
 			<span class="button floatLeft" id="navbarbutton">
 				Set-up
 			</span>
 		</a>
-		<a href="aboutus.html">
+		<a href="aboutus.php">
 			<span class="button floatRight" id="navbarbutton">
 				About
 			</span>
 		</a>
-		<a href="contactus.html">
+		<a href="contactus.php">
 			<span class="button floatRight" id="navbarbutton">
 				Contact Us
 			</span>
@@ -62,27 +62,27 @@
 
 <div id="sub_nav">
 	<!-- Optional navigation bar here -->
-	<a href="index.html">
+	<a href="index.php">
 			<span class="button hidden" id="sidebarbutton">
 				Home
 			</span>
 		</a>
-		<a href="viewdata.html">
+		<a href="viewdata.php">
 			<span class="button hidden" id="sidebarbutton">
 				View Data
 			</span>
 		</a>
-		<a href="setup.html">
+		<a href="setup.php">
 			<span class="button hidden" id="sidebarbutton">
 				Set-up
 			</span>
 		</a>
-		<a href="aboutus.html">
+		<a href="aboutus.php">
 			<span class="button hidden" id="sidebarbutton">
 				About
 			</span>
 		</a>
-		<a href="contactus.html">
+		<a href="contactus.php">
 			<span class="button hidden" id="sidebarbutton">
 				Contact Us
 			</span>
