@@ -27,7 +27,7 @@ $data_tbl = "data";
 function printQueryData($result_data) {
     //print data table
     if ($result_data->num_rows > 0) {
-        echo "<table><tr><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></tr>";
+        echo "<table cellpadding='15px' ><thead><th>PI_ID</th><th>Date</th><th>Wind Speed</th><th>Temperature</th><th>Humidity</th><th>Light</th></thead>";
         // output data of each row
         while($row = $result_data->fetch_assoc()) {
             echo "<tr><td>". $row["pi_ID"]. "</td><td>" . $row["date"] . "</td><td>" . $row["wind_speed"] . "</td><td>" . $row["temp"] . "</td><td>" . $row["humidity"] . "</td><td>" . $row["light"] . "</td></tr>";

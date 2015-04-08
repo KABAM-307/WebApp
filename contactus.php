@@ -11,7 +11,4 @@
 	</p>
 </div>
 
-<div id="footer">
-</div>
-
 <?php include_once('./footer.php'); ?>

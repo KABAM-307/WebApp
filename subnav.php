@@ -1,28 +1,28 @@
 <div id="sub_nav">
 	<!-- Optional navigation bar here -->
-	<a href="index.php">
-			<span class="button hidden" id="sidebarbutton">
+	  <a href="index.php">
+      <button type="button" class="hidden" id="sidebarbutton">
 				Home
-			</span>
+      </button>
 		</a>
 		<a href="viewdata.php">
-			<span class="button hidden" id="sidebarbutton">
+      <button type="button" class="hidden" id="sidebarbutton">
 				View Data
-			</span>
+      </button>
 		</a>
 		<a href="setup.php">
-			<span class="button hidden" id="sidebarbutton">
+      <button type="button" class="hidden" id="sidebarbutton">
 				Set-up
-			</span>
+      </button>
 		</a>
 		<a href="aboutus.php">
-			<span class="button hidden" id="sidebarbutton">
+      <button type="button" class="hidden" id="sidebarbutton">
 				About
-			</span>
+      </button>
 		</a>
 		<a href="contactus.php">
-			<span class="button hidden" id="sidebarbutton">
+      <button type="button" class="hidden" id="sidebarbutton">
 				Contact Us
-			</span>
+      </button>
 		</a>
 </div>

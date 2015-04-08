@@ -1,40 +1,15 @@
 <?php include_once('./header.php'); ?>
 
 <div id="sub_nav">
-	<span class="button" id="sidebarbutton" onclick="setup_showCreate();">
+	<button id="sidebarbutton" onclick="setup_showCreate();">
 		Create a Station
-	</span>
-	<span class="button" id="sidebarbutton" onclick="setup_showSource();">
+	</button>
+	<button id="sidebarbutton" onclick="setup_showSource();">
 		View Source Code
-	</span>
-	<span class="button" id="sidebarbutton" onclick="setup_showInfo();">
+	</button>
+	<button id="sidebarbutton" onclick="setup_showInfo();">
 		Product Info
-	</span>
-	<a href="index.html">
-			<span class="button hidden" id="sidebarbutton">
-				Home
-			</span>
-		</a>
-		<a href="viewdata.html">
-			<span class="button hidden" id="sidebarbutton">
-				View Data
-			</span>
-		</a>
-		<a href="setup.html">
-			<span class="button hidden" id="sidebarbutton">
-				Set-up
-			</span>
-		</a>
-		<a href="aboutus.html">
-			<span class="button hidden" id="sidebarbutton">
-				About
-			</span>
-		</a>
-		<a href="contactus.html">
-			<span class="button hidden" id="sidebarbutton">
-				Contact Us
-			</span>
-		</a>
+	</button>
 </div>
 
 <div id="basic" class="content" >
@@ -99,9 +74,6 @@
 	<p>
 		The Personal Pi in the Sky can be created by anyone. Follow the instructions on this page to learn how to create your own Personal Pi in the Sky.
 	</p>
-</div>
-
-<div id="footer">
 </div>
 
 <?php include_once('./footer.php'); ?>
