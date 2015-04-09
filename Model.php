@@ -340,6 +340,8 @@ function pullFilteredData($filter)
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
+    //$date_new = mktime(00, 00, 00, $month, $day, $year);
+    //$startdate = date("Y-m-d h:i:sa",$date_new);
     //$finalquery = $finalquery . " AND (date BETWEEN '" . $filter["lowDate"] . "' AND '" . $filter["highDate"] . "')";
     $results = runQuery($finalquery);
     return $results;
