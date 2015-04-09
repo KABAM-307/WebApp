@@ -136,73 +136,22 @@ function getLnt($zip){
     return $result3[0];
 }
 
-#receives data in JSON file and converts to SQL
-
-function addJSONData($json_file)
+function getZip($city, $state)
 {
-    //figure out if this is an init call or a data call
-    $json = json_decode($json_file);
-    $item = $json->RPiData;
-    if($item->type == $GLOBALS['info_tbl'])
-    {
-        //this is an initialization call
-        $pi_ID = $item->pi_ID;
-        $alias = $item->alias;
-        $owner = $item->owner;
-        $zip = $item->location;
-        $share = $item->share;
-
-        //USE ZIPCODE to find latitude and longitude
-        $llresults = getLnt($zip);
-        //going to add data to the info database
-
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $share . ", " . $llresults['lat'] . ", " . $llresults['lng'] . ")";
-
-        callInsertQuery($query);
-
-    } elseif($item->type == $GLOBALS['data_tbl'])
-    {
-        //this is a data input call
-        $pi_ID = $item->pi_ID;
-        $tmp_date = $item->dateval;
-        $temperature = $item->temp;
-        $humidity = $item->humidity;
-        $wind = $item->wind_speed;
-        $light = $item->light;
-
-        //gotta parse that date!
-        //bad code....oops
-        $endpt = strpos($tmp_date, "-");
-        $month = intval(substr($tmp_date, 0, $endpt));
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, "-", $startpt);
-        $day = intval(substr($tmp_date,$startpt,$endpt));
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, " ", $startpt);
-        $year = intval(substr($tmp_date,$startpt,$endpt));
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, ":", $startpt);
-        $hour = intval(substr($tmp_date,$startpt,$endpt));
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, ":", $startpt);
-        $minute = intval(substr($tmp_date,$startpt,$endpt));
-        $startpt = $endpt + 1;
-        $second = intval(substr($tmp_date,$startpt));
-
-        $date_new = mktime($hour, $minute, $second, $month, $day, $year);
-        $date = date("Y-m-d h:i:sa",$date_new);
-
-        //make our query
-        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
-
-        callInsertQuery($query);
-    } else
-    {
-        //problem with JSON file
-    }
+    $url = "http://maps/googleapis.com/maps/api/geocode/json?address=" . $city . "+" . $state . "&sensor=true";
+    $result_string = file_get_contents($url);
+    $result = json_decode($result_string, true);
+    $result1[] = $result['results'][0];
+    $result2[] = $result1[0]['geometry'];
+    $result3[] = $result2[0]['location'];
+    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $result3['lat'] . "," . $result3['lng'] . "&sensor=true";
+    $result_string = file_get_contents($url);
+    $result = json_decode($result_string, true);
+    $result4[] = $result['results'][0];
+    $result5[] = $result4['address_components'][4];
+    $zip = $result5['long_name'];
+    return $zip;
 }
-
 
 #find distance between two lat/lon points
 function getDistance($lat1, $lon1, $lat2, $lon2, $unit) {
@@ -243,6 +192,65 @@ function findClosestPi($lat, $long)
     }
     //echo "Closest pi has id of " . $pi_ID . " with a distance of " . $min_dist . " miles";
     return  $pi_info;
+}
+
+
+#receives data in JSON file and converts to SQL
+function addJSONData($json_file)
+{
+    //figure out if this is an init call or a data call
+    $json = json_decode($json_file);
+    $item = $json->RPiData;
+    if($item->type == $GLOBALS['info_tbl'])
+    {
+        //this is an initialization call
+        $pi_ID = $item->pi_ID;
+        $alias = $item->alias;
+        $owner = $item->owner;
+        $zip = $item->location;
+        $share = $item->share;
+        //USE ZIPCODE to find latitude and longitude
+        $llresults = getLnt($zip);
+        //going to add data to the info database
+        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('"
+            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $share . ", " . $llresults['lat'] . ", " . $llresults['lng'] . ")";
+        callInsertQuery($query);
+    } elseif($item->type == $GLOBALS['data_tbl'])
+    {
+        //this is a data input call
+        $pi_ID = $item->pi_ID;
+        $tmp_date = $item->dateval;
+        $temperature = $item->temp;
+        $humidity = $item->humidity;
+        $wind = $item->wind_speed;
+        $light = $item->light;
+        //gotta parse that date!
+        //bad code....oops
+        $endpt = strpos($tmp_date, "-");
+        $month = intval(substr($tmp_date, 0, $endpt));
+        $startpt = $endpt + 1;
+        $endpt = strpos($tmp_date, "-", $startpt);
+        $day = intval(substr($tmp_date,$startpt,$endpt));
+        $startpt = $endpt + 1;
+        $endpt = strpos($tmp_date, " ", $startpt);
+        $year = intval(substr($tmp_date,$startpt,$endpt));
+        $startpt = $endpt + 1;
+        $endpt = strpos($tmp_date, ":", $startpt);
+        $hour = intval(substr($tmp_date,$startpt,$endpt));
+        $startpt = $endpt + 1;
+        $endpt = strpos($tmp_date, ":", $startpt);
+        $minute = intval(substr($tmp_date,$startpt,$endpt));
+        $startpt = $endpt + 1;
+        $second = intval(substr($tmp_date,$startpt));
+        $date_new = mktime($hour, $minute, $second, $month, $day, $year);
+        $date = date("Y-m-d h:i:sa",$date_new);
+        //make our query
+        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
+        callInsertQuery($query);
+    } else
+    {
+        //problem with JSON file
+    }
 }
 
 #FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
@@ -299,6 +307,12 @@ function pullFilteredData($filter)
         $query = $query . " WHERE alias='" . $filter["alias"] . "'";
     }
     //TODO:add location filtering here
+    if ($filter["city"] != "none" && $filter["state"] != "none") {
+        //using a city as well
+        $zip = getZip($filter["city"], $filter["state"]);
+        echo $zip;
+        $query = $query + " AND zipcode=" . $zip;
+    }
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
     if ($pi_results->num_rows == 1) {
@@ -327,6 +341,7 @@ function pullFilteredData($filter)
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
+    $finalquery = $finalquery . " AND (date BETWEEN '" . $filter["lowDate"] . "'' AND '" . $filter["highDate"] . "'')";
     $results = runQuery($finalquery);
     return $results;
 }
@@ -384,7 +399,7 @@ function removePi($pi_id)
 #posts the current data to the website
 function postCurrentData($data)
 {
-    echo "Currently in " . $data['zipcode'] . " zipcode" . "<br>";
+    echo "Currently in the " . $data['zipcode'] . " zipcode" . "<br>";
     echo "Temperature: " . $data['temp'] . "<br>";
     echo "Wind Speed: " . $data['wind'] . "<br>";
     echo "Humidity: " . $data['humidity'] . "<br>";
