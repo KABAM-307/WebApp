@@ -348,8 +348,9 @@ function pullFilteredData($filter)
     $year = intval(substr($filter["highDate"], 0, 4));
     $month = intval(substr($filter["highDate"], 5, 7));
     $day = intval(substr($filter["highDate"], 9, 11));
-    $date_new = mktime(00, 00, 00, $month, $day, $year);
+    $date_new = mktime(23, 59, 59.999, $month, $day, $year);
     $enddate = date("Y-m-d h:i:sa",$date_new);
+    echo $startdate;
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
     $results = runQuery($finalquery);
     return $results;
