@@ -225,7 +225,7 @@ function getDistance($lat1, $lon1, $lat2, $lon2, $unit) {
 #FINDS THE CLOSEST PI_ID to the given latitude and longitude
 function findClosestPi($lat, $long)
 {
-    $pi_ID = 0;
+    $pi_info = array("pi_ID"=>0,"zipcode"=>0);
     //first run a query requesting all information in the info table
     $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
     $all_data = runQuery($query);
@@ -236,12 +236,13 @@ function findClosestPi($lat, $long)
         $row_lon = $row["Longitude"];
         $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
         if ($r == 0 || $row_dist < $min_dist) {
-            $pi_ID = $row["pi_ID"];
+            $pi_info["pi_ID"] = $row["pi_ID"];
+            $pi_info["zipcode"] = $row["zipcode"];
             $min_dist = $row_dist;
         }
     }
     //echo "Closest pi has id of " . $pi_ID . " with a distance of " . $min_dist . " miles";
-    return  $pi_ID;
+    return  $pi_info;
 }
 
 #FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
@@ -251,7 +252,7 @@ function findClosestPi($lat, $long)
 function pullCurrentData($lat, $long)
 {
     #initialize our results array
-    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"zipcode"=>0,"light"=>0);
+    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"light"=>0);
 
 
     //FIND LOCATION THINGS
@@ -259,7 +260,7 @@ function pullCurrentData($lat, $long)
 
     #request the most recent update from the given pi
 
-    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $closest_Pi . "'";
+    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $closest_Pi["pi_ID"] . "'";
 
     $all_data = runQuery($query);
 
@@ -274,7 +275,7 @@ function pullCurrentData($lat, $long)
     $results['humidity'] = $row["humidity"];
     $results['wind'] = $row["wind_speed"];
     $results['light'] = $row["light"];
-    $results['zipcode'] = $row["zipcode"];
+    $results['zipcode'] = $closest_Pi["zipcode"];
 
     return $results;
 }
