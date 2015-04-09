@@ -243,7 +243,7 @@ function addJSONData($json_file)
         $startpt = $endpt + 1;
         $second = intval(substr($tmp_date,$startpt));
         $date_new = mktime($hour, $minute, $second, $month, $day, $year);
-        $date = date("d-m-Y h:i:sa",$date_new);
+        $date = date("m-d-Y h:i:sa",$date_new);
         //make our query
         $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
         callInsertQuery($query);
@@ -344,12 +344,12 @@ function pullFilteredData($filter)
     $month = intval(substr($filter["lowDate"], 5, 7));
     $day = intval(substr($filter["lowDate"], 9, 11));
     $date_new = mktime(00, 00, 00, $month, $day, $year);
-    $startdate = date("Y-m-d h:i:sa",$date_new);
+    $startdate = date("m-d-Y h:i:sa",$date_new);
     $year = intval(substr($filter["highDate"], 0, 4));
     $month = intval(substr($filter["highDate"], 5, 7));
     $day = intval(substr($filter["highDate"], 9, 11));
     $date_new = mktime(23, 59, 59.999, $month, $day, $year);
-    $enddate = date("d-m-Y h:i:sa",$date_new);
+    $enddate = date("m-d-Y h:i:sa",$date_new);
     echo "\n" . $startdate;
     echo "\n" . $enddate;
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
