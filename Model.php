@@ -310,7 +310,6 @@ function pullFilteredData($filter)
     if ($filter["city"] != "none" && $filter["state"] != "none") {
         //using a city as well
         $zip = getZip($filter["city"], $filter["state"]);
-        echo $zip;
         $query = $query + " AND zipcode=" . $zip;
     }
     $pi_results = runQuery($query);
@@ -341,7 +340,7 @@ function pullFilteredData($filter)
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
-    $finalquery = $finalquery . " AND (date BETWEEN '" . $filter["lowDate"] . "' AND '" . $filter["highDate"] . "')";
+    //$finalquery = $finalquery . " AND (date BETWEEN '" . $filter["lowDate"] . "' AND '" . $filter["highDate"] . "')";
     $results = runQuery($finalquery);
     return $results;
 }
