@@ -154,8 +154,8 @@ function getZip($city, $state)
     echo $result_string;
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
-    $result5[] = $result4['address_components'][0];
-    $zip = $result5[7]['long_name'];
+    $result5[] = $result4[0]['address_components'];
+    $zip = $result5[0]['long_name'];
     echo "\n" . $zip;
     return $zip;
 }
