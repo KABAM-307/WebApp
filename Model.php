@@ -146,7 +146,7 @@ function getZip($city, $state)
             $city[$i] = '+';
         }
     }
-    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $city . "&components=state:" . $state;
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $city . "+" . $state;
     $result_string = file_get_contents($url);
     $result = json_decode($result_string, true);
     $result1[] = $result['results'][0];
@@ -157,7 +157,15 @@ function getZip($city, $state)
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
     $result5[] = $result4[0]['address_components'][7];
-    $zip = $result5[0]['long_name'];
+    $i = 0;
+    $zip = 0;
+    while($result5[$i][0]['long_name'] != 0) {
+        echo $result5[$i][0]['types'][0];
+        if ($result5[$i][0]['types'][0] == "postal_code") {
+            $zip = $result5[$i][0]['long_name'];
+            break;
+        }
+    }
     return $zip;
 }
 
