@@ -301,16 +301,22 @@ function pullFilteredData($filter)
     //first grab PI_IDs that match what we need
     $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
     //check if we need
+    $addedwhere = false;
     if ($filter["alias"] != "none") {
         //using alias
+        $addedwhere = true;
         $query = $query . " WHERE alias='" . $filter["alias"] . "'";
     }
     //TODO:add location filtering here
     if ($filter["city"] != "none" && $filter["state"] != "none") {
         //using a city as well
-        $zip = getZip($filter["city"], $filter["state"]);
-        $query = $query + " AND zipcode=" . $zip;
-        echo $query;
+        if ($addedwhere) {
+            $zip = getZip($filter["city"], $filter["state"]);
+            $query = $query . " AND zipcode=" . $zip;
+        } else {
+            $zip = getZip($filter["city"], $filter["state"]);
+            $query = $query . " WHERE zipcode=" . $zip;
+        }
     }
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
