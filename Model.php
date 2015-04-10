@@ -149,14 +149,14 @@ function getZip($city, $state)
     $result1[] = $result['results'][0];
     $result2[] = $result1[0]['geometry'];
     $result3[] = $result2[0]['location'];
-    echo $result3[0]['lat'] . ", " . $result3[0]['lng'] . "\n";
-    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $result3[0]['lat'] . "," . $result3[0]['lng'] . "&sensor=true&components=type:postal_code";
+    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $result3[0]['lat'] . "," . $result3[0]['lng'] . "&sensor=true";
     $result_string = file_get_contents($url);
     echo $result_string;
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
-    $result5[] = $result4['address_components'][4];
-    $zip = $result5['long_name'];
+    $result5[] = $result4['address_components'][0];
+    $zip = $result5[7]['long_name'];
+    echo "\n" . $zip;
     return $zip;
 }
 
