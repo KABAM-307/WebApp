@@ -221,7 +221,7 @@ function addJSONData($json_file)
         $results = getLnt($zip);
         //going to add data to the info database
         $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $results["city"] . ", " . $results["state"] . ", " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
+            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
         callInsertQuery($query);
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
