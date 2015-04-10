@@ -227,23 +227,22 @@ function addJSONData($json_file)
         //gotta parse that date!
         //bad code....oops
         $endpt = strpos($tmp_date, "-");
-        $month = intval(substr($tmp_date, 0, $endpt));
+        $month = substr($tmp_date, 0, $endpt);
         $startpt = $endpt + 1;
         $endpt = strpos($tmp_date, "-", $startpt);
-        $day = intval(substr($tmp_date,$startpt,$endpt));
+        $day = substr($tmp_date,$startpt,$endpt);
         $startpt = $endpt + 1;
         $endpt = strpos($tmp_date, " ", $startpt);
-        $year = intval(substr($tmp_date,$startpt,$endpt));
+        $year = substr($tmp_date,$startpt,$endpt);
         $startpt = $endpt + 1;
         $endpt = strpos($tmp_date, ":", $startpt);
-        $hour = intval(substr($tmp_date,$startpt,$endpt));
+        $hour = substr($tmp_date,$startpt,$endpt);
         $startpt = $endpt + 1;
         $endpt = strpos($tmp_date, ":", $startpt);
-        $minute = intval(substr($tmp_date,$startpt,$endpt));
+        $minute = substr($tmp_date,$startpt,$endpt);
         $startpt = $endpt + 1;
-        $second = intval(substr($tmp_date,$startpt));
-        $date_new = mktime($hour, $minute, $second, $month, $day, $year);
-        $date = date("m-d-Y h:i:sa",$date_new);
+        $second = substr($tmp_date,$startpt);
+        $date = $year . "-" . $month . "-" . $day . "T" . $hour . ":" . $minute . ":" . $second;
         //make our query
         $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
         callInsertQuery($query);
@@ -340,18 +339,14 @@ function pullFilteredData($filter)
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
     //TODO: Add date stuff
-    $year = intval(substr($filter["lowDate"], 0, 4));
-    $month = intval(substr($filter["lowDate"], 5, 7));
-    $day = intval(substr($filter["lowDate"], 9, 11));
-    $date_new = mktime(00, 00, 00, $month, $day, $year);
-    $startdate = date("m-d-Y h:i:sa",$date_new);
-    $year = intval(substr($filter["highDate"], 0, 4));
-    $month = intval(substr($filter["highDate"], 5, 7));
-    $day = intval(substr($filter["highDate"], 9, 11));
-    $date_new = mktime(23, 59, 59.999, $month, $day, $year);
-    $enddate = date("m-d-Y h:i:sa",$date_new);
-    echo "\n" . $startdate;
-    echo "\n" . $enddate;
+    $year = substr($filter["lowDate"], 0, 4);
+    $month = substr($filter["lowDate"], 5, 7);
+    $day = substr($filter["lowDate"], 9, 11);
+    $startdate = $year . "-" . $month . "-" . $day . "T00:00:00";
+    $year = substr($filter["highDate"], 0, 4);
+    $month = substr($filter["highDate"], 5, 7);
+    $day = substr($filter["highDate"], 9, 11);
+    $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
     $results = runQuery($finalquery);
     return $results;

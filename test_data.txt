@@ -2,7 +2,7 @@
 	"RPiData": {
 		"type":"data",
 		"pi_ID":"json1",
-		"dateval":"3-4-2015 12:54:00",
+		"dateval":"3-04-2015 12:54:00",
 		"temp":70,
 		"humidity":1.01,
 		"wind_speed":6.2
