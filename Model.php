@@ -333,7 +333,7 @@ function pullFilteredData($filter)
         $finalquery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID IN ('" . $pis["pi_ID"] . "', ";
         for (; $count < $pi_results->num_rows; $count = $count + 1) {
             $pis = mysqli_fetch_assoc($pi_results);
-            $finalquery = $finalquery . $pis["pi_ID"] . "'";
+            $finalquery = $finalquery . "'" . $pis["pi_ID"] . "'";
             if ($count == $pi_results->num_rows - 1) {
                 $finalquery = $finalquery . ")";
             } else {
