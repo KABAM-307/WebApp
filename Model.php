@@ -323,7 +323,6 @@ function pullFilteredData($filter)
             $query = $query . " WHERE zipcode=" . $zip;
         }
     }
-    echo $query . "\n";
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
     if ($pi_results->num_rows == 1) {
@@ -361,6 +360,7 @@ function pullFilteredData($filter)
     $day = substr($filter["highDate"], 9, 11);
     $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
+    echo $finalquery;
     $results = runQuery($finalquery);
     return $results;
 }
