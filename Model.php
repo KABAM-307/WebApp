@@ -117,10 +117,10 @@ function callInsertQuery($query)
     if($result == TRUE)
     {
         #new record created successfully
-        echo "Successfully added record<br>";
+        echo "Successfully added record";
     } else
     {
-        echo "Error: " . $query . "<br>";
+        echo "Error: " . $query;
     }
 
 }
@@ -217,39 +217,20 @@ function addJSONData($json_file)
         //USE ZIPCODE to find latitude and longitude
         $llresults = getLnt($zip);
         //going to add data to the info database
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $share . ", " . $llresults['lat'] . ", " . $llresults['lng'] . ")";
+        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('".$pi_ID."', '".$alias."', '".$owner."', ".$zip.", ".$share.", ".$llresults['lat'].", ".$llresults['lng'].")";
+
         callInsertQuery($query);
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
         //this is a data input call
         $pi_ID = $item->pi_ID;
-        $tmp_date = $item->dateval;
+        $date = date("Y-m-d G:i:s");
+        $wind = $item->wind_speed;
         $temperature = $item->temp;
         $humidity = $item->humidity;
-        $wind = $item->wind_speed;
         $light = $item->light;
-        //gotta parse that date!
-        //bad code....oops
-        $endpt = strpos($tmp_date, "-");
-        $month = substr($tmp_date, 0, $endpt);
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, "-", $startpt);
-        $day = substr($tmp_date,$startpt,$endpt);
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, " ", $startpt);
-        $year = substr($tmp_date,$startpt,$endpt);
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, ":", $startpt);
-        $hour = substr($tmp_date,$startpt,$endpt);
-        $startpt = $endpt + 1;
-        $endpt = strpos($tmp_date, ":", $startpt);
-        $minute = substr($tmp_date,$startpt,$endpt);
-        $startpt = $endpt + 1;
-        $second = substr($tmp_date,$startpt);
-        $date = $year . "-" . $month . "-" . $day . "T" . $hour . ":" . $minute . ":" . $second;
         //make our query
-        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', " . $wind . ", " . $temperature . ", " . $humidity . ", " . $light .")";
+        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', '" . $wind . "', '" . $temperature . "', '" . $humidity . "', '" . $light ."')";
         callInsertQuery($query);
     } else
     {
@@ -418,10 +399,10 @@ function removePi($pi_id)
 #posts the current data to the website
 function postCurrentData($data)
 {
-    echo "Currently in the " . $data['zipcode'] . " zipcode" . "<br>";
-    echo "Temperature: " . $data['temp'] . "<br>";
+    echo "Currently in zipcode " . $data['zipcode'] . "<br>";
+    echo "Temperature: " . $data['temp'] . " *F<br>";
     echo "Wind Speed: " . $data['wind'] . "<br>";
-    echo "Humidity: " . $data['humidity'] . "<br>";
-    echo "Light: " . $data['light'] . "<br>";
+    echo "Humidity: " . $data['humidity'] . "%<br>";
+    echo "Light: " . $data['light'] . " lux<br>";
 }
 ?>
