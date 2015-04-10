@@ -151,11 +151,10 @@ function getZip($city, $state)
     $result3[] = $result2[0]['location'];
     $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $result3[0]['lat'] . "," . $result3[0]['lng'] . "&sensor=true";
     $result_string = file_get_contents($url);
-    echo $result_string;
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
     $result5[] = $result4[0]['address_components'][0];
-    $zip = $result5[0]['long_name'];
+    $zip = $result5[7]['long_name'];
     echo "\n" . $zip;
     return $zip;
 }
