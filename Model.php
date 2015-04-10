@@ -318,6 +318,7 @@ function pullFilteredData($filter)
             $query = $query . " WHERE zipcode=" . $zip;
         }
     }
+    echo $query . "\n";
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
     if ($pi_results->num_rows == 1) {
