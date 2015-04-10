@@ -145,13 +145,11 @@ function getZip($city, $state)
     }
     $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $city . "&components=state:" . $state;
     $result_string = file_get_contents($url);
+    echo $result_string. "\n\n";
     $result = json_decode($result_string, true);
     $result1[] = $result['results'][0];
-    echo $result1 . "\n\n";
     $result2[] = $result1[0]['geometry'];
-    echo $result2 . "\n\n";
     $result3[] = $result2[0]['location'];
-    echo $result3 . "\n\n";
     echo $result3['lat'] . ", " . $result3['lng'] . "\n";
     $url = "http://maps.googleapis.com/maps/api/geocode/jso
     n?latlng=" . $result3['lat'] . "," . $result3['lng'] . "&sensor=true";
