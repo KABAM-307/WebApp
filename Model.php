@@ -165,6 +165,7 @@ function getZip($city, $state)
             $zip = $result5[$i][0]['long_name'];
             break;
         }
+        $i++;
     }
     return $zip;
 }
