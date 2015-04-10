@@ -135,7 +135,7 @@ function getLnt($zip){
     $result3[]=$result2[0]['location'];
     $result5[] = $result1[0]['address_components'][1];
     $result6[] = $result1[0]['address_components'][2];
-    $location = array("lat"=>$result3[0]['lat'],"lng"=>$result3[0]['lng'], "city"=>$result5[0]['long_name'], "state"=>$result6[0]['long_name']);
+    $location = array("lat"=>$result3[0]['lat'],"lng"=>$result3[0]['lng'], "city"=>$result5[0]['long_name'], "state"=>$result6[0]['short_name']);
     return $location;
 }
 
