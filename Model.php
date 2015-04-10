@@ -145,7 +145,6 @@ function getZip($city, $state)
     }
     $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $city . "&components=state:" . $state;
     $result_string = file_get_contents($url);
-    echo $result_string;
     $result = json_decode($result_string, true);
     $result1[] = $result['results'][0];
     $result2[] = $result1[0]['geometry'];
