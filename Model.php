@@ -156,7 +156,7 @@ function getZip($city, $state)
     $result_string = file_get_contents($url);
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
-    $result5[] = $result4[0]['address_components'][7];
+    $result5[] = $result4[0]['address_components'];
     $i = 0;
     $zip = 0;
     while($result5[$i][0]['long_name'] != 0) {
