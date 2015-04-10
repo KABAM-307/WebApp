@@ -159,7 +159,7 @@ function getZip($city, $state)
     $result5[] = $result4[0]['address_components'];
     $i = 0;
     $zip = 0;
-    while(true) {
+    while($i < 10) {
         echo $result5[$i][0]['types'][0];
         if ($result5[$i][0]['types'][0] == "postal_code") {
             $zip = $result5[$i][0]['long_name'];
