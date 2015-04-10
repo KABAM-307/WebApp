@@ -133,7 +133,10 @@ function getLnt($zip){
     $result1[]=$result['results'][0];
     $result2[]=$result1[0]['geometry'];
     $result3[]=$result2[0]['location'];
-    return $result3[0];
+    $result5[] = $result1[0]['address_components'][1];
+    $result6[] = $result1[0]['address_components'][2];
+    $location = array("lat"=>$result3[0]['lat'],"lng"=>$result3[0]['lng'], "city"=>$result5[0]['long_name'], "state"=>$result6[0]['long_name']);
+    return $location;
 }
 
 function getZip($city, $state)
@@ -215,10 +218,10 @@ function addJSONData($json_file)
         $zip = $item->location;
         $share = $item->share;
         //USE ZIPCODE to find latitude and longitude
-        $llresults = getLnt($zip);
+        $results = getLnt($zip);
         //going to add data to the info database
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $share . ", " . $llresults['lat'] . ", " . $llresults['lng'] . ")";
+        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
+            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", " . $results["city"] . ", " . $results["state"] . ", " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
         callInsertQuery($query);
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
@@ -360,7 +363,6 @@ function pullFilteredData($filter)
     $day = substr($filter["highDate"], 9, 11);
     $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
-    echo $finalquery;
     $results = runQuery($finalquery);
     return $results;
 }
