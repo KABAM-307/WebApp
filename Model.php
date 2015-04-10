@@ -310,6 +310,7 @@ function pullFilteredData($filter)
         //using a city as well
         $zip = getZip($filter["city"], $filter["state"]);
         $query = $query + " AND zipcode=" . $zip;
+        echo $query;
     }
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
