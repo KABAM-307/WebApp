@@ -138,7 +138,12 @@ function getLnt($zip){
 
 function getZip($city, $state)
 {
-    $url = "http://maps/googleapis.com/maps/api/geocode/json?address=" . $city . "+" . $state . "&sensor=true";
+    for ($i = 0; $i < strlen($city) ; $i++) {
+        if ($city[$i] == ' ') {
+            $city[$i] = '+';
+        }
+    }
+    $url = "https://maps.googleapis.com/maps/api/geocode/json?address=" . $city . "&components=state:" . $state;
     $result_string = file_get_contents($url);
     echo $result_string;
     $result = json_decode($result_string, true);
@@ -146,7 +151,8 @@ function getZip($city, $state)
     $result2[] = $result1[0]['geometry'];
     $result3[] = $result2[0]['location'];
     echo $result3['lat'] . ", " . $result3['lng'] . "\n";
-    $url = "http://maps.googleapis.com/maps/api/geocode/json?latlng=" . $result3['lat'] . "," . $result3['lng'] . "&sensor=true";
+    $url = "http://maps.googleapis.com/maps/api/geocode/jso
+    n?latlng=" . $result3['lat'] . "," . $result3['lng'] . "&sensor=true";
     $result_string = file_get_contents($url);
     echo $result_string;
     $result = json_decode($result_string, true);
