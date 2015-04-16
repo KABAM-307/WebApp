@@ -141,7 +141,7 @@ function getLnt($zip){
 
 function getZip($city, $state)
 {
-    for ($i = 0; $i < strlen($city) ; $i++) {
+    for ($i = 0; $i < strlen($city); $i++) {
         if ($city[$i] == ' ') {
             $city[$i] = '+';
         }
@@ -156,8 +156,16 @@ function getZip($city, $state)
     $result_string = file_get_contents($url);
     $result = json_decode($result_string, true);
     $result4[] = $result['results'][0];
-    $result5[] = $result4[0]['address_components'][7];
-    $zip = $result5[0]['long_name'];
+    $index = 0;
+    for ($i = 0; $i < 15; $i++) {
+        $result5[] = $result4[0]['address_components'][i];
+        if ($result5[0]['types'][0] == "postal_code") {
+            $index = i;
+            break;
+        }
+    }
+    $result6[] = $result4[0]['address_components'][$index];
+    $zip = $result6[0]['long_name'];
     return $zip;
 }
 
