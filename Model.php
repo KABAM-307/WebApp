@@ -166,7 +166,7 @@ function getZip($city, $state)
         }
     }
     echo $index;
-    echo "<br";
+    echo "<br>";
     $result6[] = $result4[0]['address_components'][$index];
     $zip = $result6[0]['long_name'];
     echo $zip;
