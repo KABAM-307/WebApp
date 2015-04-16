@@ -192,7 +192,7 @@ function findClosestPi($lat, $long)
 {
     $pi_info = array("pi_ID"=>0,"zipcode"=>0);
     //first run a query requesting all information in the info table
-    $query = "SELECT * FROM " . $GLOBALS['info_tbl'];
+    $query = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE share=1";
     $all_data = runQuery($query);
     $min_dist = -1;
     for ($r = 0; $r < mysqli_num_rows($all_data); $r++) {
