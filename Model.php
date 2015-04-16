@@ -158,7 +158,7 @@ function getZip($city, $state)
     $result4[] = $result['results'][0];
     $index = 0;
     for ($i = 0; $i < 15; $i++) {
-        $result5[] = $result4[0]['address_components'][i];
+        $result5[] = $result4[0]['address_components'][$i];
         var_dump($result5[0]);
         if ($result5[0]['types'][0] == "postal_code") {
             echo $i;
