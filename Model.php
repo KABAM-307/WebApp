@@ -118,9 +118,12 @@ function callInsertQuery($query)
     {
         #new record created successfully
         echo "Successfully added record";
+        return TRUE;
     } else
     {
         echo "Error: " . $query;
+        //we might need to update the data
+        return FALSE;
     }
 
 }
@@ -230,7 +233,30 @@ function addJSONData($json_file)
         //going to add data to the info database
         $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
             . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
-        callInsertQuery($query);
+        $success = callInsertQuery($query);
+        if ($success == FALSE) {
+            //get the record that already has the pi id
+            $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
+            $res = runQuery($selq);
+            $row = mysqli_fetch_assoc($res);
+            if ($alias != $row["alias"]) {
+                changeField("alias", $alias, $pi_ID);
+            }
+            if ($owner != $row["owner"]) {
+                changeField("owner", $owner, $pi_ID);
+            }
+            if ($zip != $row["zipcode"]) {
+                changeField("zipcode", $zip, $pi_ID);
+                $results = getLnt($zip);
+                changeField("City", $results["city"], $pi_ID);
+                changeField("State", $results["state"], $pi_ID);
+                changeField("Latitude", $results["lat"], $pi_ID);
+                changeField("Longitude", $results["lng"], $pi_ID);
+            }
+            if ($share != $row["share"]) {
+                changeField("share", $share, $pi_ID);
+            }
+        }
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
         //this is a data input call
@@ -308,7 +334,7 @@ function pullFilteredData($filter)
         $zip = getZip($filter["city"], $filter["state"]);
         $query = $query . " AND zipcode=" . $zip;
     }
-    
+
     $pi_results = runQuery($query);
     $pis = mysqli_fetch_assoc($pi_results);
     if ($pi_results->num_rows == 1) {
@@ -336,7 +362,7 @@ function pullFilteredData($filter)
     $finalquery = $finalquery . " AND (light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"] . ")";
     //wind speed
     $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
-    //TODO: Add date stuff
+
     $year = substr($filter["lowDate"], 0, 4);
     $month = substr($filter["lowDate"], 5, 7);
     $day = substr($filter["lowDate"], 9, 11);
