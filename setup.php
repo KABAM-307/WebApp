@@ -46,13 +46,12 @@
 	</p>
 	<p>
 		After you have all of the materials, you're ready to start creating your own weather station.<br><br>
-		First, download our software to your Raspberry Pi here.
-		If you need a Raspberry Pi tutorial, click here.<br>
+		If you need a Raspberry Pi tutorial, click <a href="https://www.youtube.com/watch?v=Jj4pjfU_-jo">here</a>.<br>
 		Next, you're ready to start building. To connect your sensors, check out these tutorials:
 		Check out the tutorial of how to connect the temperature sensor here.<br>
 		Check out the tutorial of how to connect the pressure sensor here.<br>
 		Check out the tutorial of how to connect the light sensor here.<br><br>
-		After everything is connect and your weather station is set up, all you have to do is connect to our server.
+		After everything is connected and your weather station is set up, all you have to do is connect to our server.
 		<br><br>
 		You're done! You now have your very own Personal Pi in the Sky! Enjoy!
 	</p>
