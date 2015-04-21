@@ -311,7 +311,8 @@ function pullCurrentData($lat, $long)
     $results['light'] = $row["light"];
     $results['zipcode'] = $closest_Pi["zipcode"];
 
-    return $results;
+    $json = json_encode($results);
+    return $json;
 }
 
 #handles request for filtered data and converts into SQL
