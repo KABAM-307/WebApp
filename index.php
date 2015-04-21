@@ -14,7 +14,7 @@
         lat = position.coords.latitude;
         lon = position.coords.longitude;
 
-        var xmlhttp = new XMLHttpRequest();
+        /*var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             document.getElementById("data").innerHTML = xmlhttp.responseText;
@@ -22,6 +22,17 @@
         }
         //document.getElementById("test").innerHTML = "currentData.php?latitude=" + lat + "&longitude=" + lon;
         xmlhttp.open("GET", "currentData.php?latitude=" + lat + "&longitude=" + lon);
+		*/
+		$.getJSON("currentData.php?latitude=" + lat + "&longitude=" + lon, function(data){
+			
+			console.log(data);
+			
+			
+			
+			
+		});
+		
+		
         xmlhttp.send();
 
       });
