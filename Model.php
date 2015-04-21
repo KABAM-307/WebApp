@@ -233,6 +233,7 @@ function addJSONData($json_file)
         //check if there is already a pi_ID in there
         $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
         $num_res = mysql_num_rows($selq);
+        echo $num_res . "<br>";
         if ($num_res >= 1) {
             //get the record that already has the pi id
             $res = runQuery($selq);
