@@ -232,7 +232,7 @@ function addJSONData($json_file)
         $results = getLnt($zip);
         //check if there is already a pi_ID in there
         $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
-        $num_res = mysql_num_rows($selq);
+        $num_res = mysqli_num_rows($selq);
         echo $num_res . "<br>";
         if ($num_res >= 1) {
             //get the record that already has the pi id
