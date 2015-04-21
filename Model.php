@@ -405,10 +405,10 @@ function changeField($field, $new_val, $pi_id)
         case "wind_speed":
         case "temp":
         case "humidity":
-            $tbl = $this->data_tbl;
+            $tbl = $GLOBALS["data_tbl"];
             break;
         default:
-            $tbl = $this->info_tbl;
+            $tbl = $GLOBALS["info_tbl"];
             break;
     }
 
