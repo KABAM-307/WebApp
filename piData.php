@@ -6,7 +6,9 @@
  * Time: 3:30 PM
  */
     include 'Model.php';
-    $jsonstr = $_POST["json"];
-    addJSONData($jsonstr);
+    //$jsonstr = $_POST["json"];
+    //addJSONData($jsonstr);
+    $jsontest = "{\n\"RPiData\": {\"type\":\"info\",\n\"pi_ID\":\"json1\",\n\"alias\":\"json_tester1\",\n\"owner\":\"bkuehn\",\n\"location\":47906,\n\"share\":0\n}\n}";
+    addJSONData($jsontest)
 ?>
 
