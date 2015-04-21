@@ -230,14 +230,13 @@ function addJSONData($json_file)
         $share = $item->share;
         //USE ZIPCODE to find latitude and longitude
         $results = getLnt($zip);
-        //going to add data to the info database
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
-        $success = callInsertQuery($query);
-        if ($success == FALSE) {
+        //check if there is already a pi_ID in there
+        $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
+        $res = runQuery($selq);
+        $num_res = mysqli_num_rows($res);
+        if ($num_res >= 1) {
+            echo "Updating Pi";
             //get the record that already has the pi id
-            $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
-            $res = runQuery($selq);
             $row = mysqli_fetch_assoc($res);
             if ($alias != $row["alias"]) {
                 changeField("alias", $alias, $pi_ID);
@@ -256,6 +255,11 @@ function addJSONData($json_file)
             if ($share != $row["share"]) {
                 changeField("share", $share, $pi_ID);
             }
+        } else {
+            //going to add data to the info database
+            $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
+                . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
+            callInsertQuery($query);
         }
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
@@ -301,13 +305,10 @@ function pullCurrentData($lat, $long)
     }
     #now on the last
     $row = mysqli_fetch_assoc($all_data);
-    $results['temp'] = $row["temp"];
-    $results['humidity'] = $row["humidity"];
-    $results['wind'] = $row["wind_speed"];
-    $results['light'] = $row["light"];
-    $results['zipcode'] = $closest_Pi["zipcode"];
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"]);
 
-    return $results;
+    $json = json_encode($jsona);
+    return $json;
 }
 
 #handles request for filtered data and converts into SQL
@@ -401,15 +402,15 @@ function changeField($field, $new_val, $pi_id)
         case "wind_speed":
         case "temp":
         case "humidity":
-            $tbl = $this->data_tbl;
+            $tbl = $GLOBALS["data_tbl"];
             break;
         default:
-            $tbl = $this->info_tbl;
+            $tbl = $GLOBALS["info_tbl"];
             break;
     }
 
     $query = "UPDATE " . $tbl . " SET " . $field . "='" . $new_val . "' WHERE pi_ID='" . $pi_id . "'";
-    $result = $this->runQuery($query);
+    runQuery($query);
 }
 
 #FUNCTIONS THAT WILL DELETE A CERTAIN RPI WEATHER STATION

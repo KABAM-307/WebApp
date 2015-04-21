@@ -16,4 +16,4 @@ $long = $_GET["longitude"];
 //echo "Found longitude: " . $long . "\n";
 $data_to_post = pullCurrentData($lat, $long);
 #post the data
-postCurrentData($data_to_post);
+echo $data_to_post;
