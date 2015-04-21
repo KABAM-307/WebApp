@@ -413,7 +413,6 @@ function changeField($field, $new_val, $pi_id)
     }
 
     $query = "UPDATE " . $tbl . " SET " . $field . "='" . $new_val . "' WHERE pi_ID='" . $pi_id . "'";
-    echo $query;
     runQuery($query);
 }
 
