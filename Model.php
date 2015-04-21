@@ -231,12 +231,9 @@ function addJSONData($json_file)
         //USE ZIPCODE to find latitude and longitude
         $results = getLnt($zip);
         //check if there is already a pi_ID in there
-        echo "Pi ID: " . $pi_ID . "<br>";
         $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
         $res = runQuery($selq);
-        var_dump($res);
         $num_res = mysqli_num_rows($res);
-        echo "Num res: " . $num_res . "<br>";
         if ($num_res >= 1) {
             echo "Updating Pi";
             //get the record that already has the pi id
@@ -256,7 +253,6 @@ function addJSONData($json_file)
                 changeField("Longitude", $results["lng"], $pi_ID);
             }
             if ($share != $row["share"]) {
-                echo "<br>Changing share";
                 changeField("share", $share, $pi_ID);
             }
         } else {
@@ -417,7 +413,8 @@ function changeField($field, $new_val, $pi_id)
     }
 
     $query = "UPDATE " . $tbl . " SET " . $field . "='" . $new_val . "' WHERE pi_ID='" . $pi_id . "'";
-    $result = $this->runQuery($query);
+    echo $query;
+    runQuery($query);
 }
 
 #FUNCTIONS THAT WILL DELETE A CERTAIN RPI WEATHER STATION
