@@ -233,10 +233,10 @@ function addJSONData($json_file)
         //check if there is already a pi_ID in there
         $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
         $res = runQuery($selq);
-        var_dump($res);
         $num_res = $res["num_rows"];
-        echo $num_res . "<br>";
+        echo "Num res: " . $num_res . "<br>";
         if ($num_res >= 1) {
+            echo "Updating Pi";
             //get the record that already has the pi id
             $row = mysqli_fetch_assoc($res);
             if ($alias != $row["alias"]) {
@@ -254,6 +254,7 @@ function addJSONData($json_file)
                 changeField("Longitude", $results["lng"], $pi_ID);
             }
             if ($share != $row["share"]) {
+                echo "<br>Changing share";
                 changeField("share", $share, $pi_ID);
             }
         } else {
