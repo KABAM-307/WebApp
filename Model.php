@@ -311,7 +311,7 @@ function pullCurrentData($lat, $long)
     $jsona[] = array('name' => 'light', 'data' => $row["light"]);
     $jsona[] = array('name' => 'zipcode', 'data' => $closest_Pi["zipcode"]);
 
-    $json = json_encode($results);
+    $json = json_encode($jsona);
     return $json;
 }
 
