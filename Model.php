@@ -230,13 +230,11 @@ function addJSONData($json_file)
         $share = $item->share;
         //USE ZIPCODE to find latitude and longitude
         $results = getLnt($zip);
-        //going to add data to the info database
-        $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
-            . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
-        $success = callInsertQuery($query);
-        if ($success == FALSE) {
+        //check if there is already a pi_ID in there
+        $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
+        $num_res = mysql_num_rows($selq);
+        if ($num_res >= 1) {
             //get the record that already has the pi id
-            $selq = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
             $res = runQuery($selq);
             $row = mysqli_fetch_assoc($res);
             if ($alias != $row["alias"]) {
@@ -256,6 +254,11 @@ function addJSONData($json_file)
             if ($share != $row["share"]) {
                 changeField("share", $share, $pi_ID);
             }
+        } else {
+            //going to add data to the info database
+            $query = "INSERT INTO " . $GLOBALS['info_tbl'] . " (pi_ID, alias, owner, zipcode, City, State, share, Latitude, Longitude) VALUES ('"
+                . $pi_ID . "', '" . $alias . "', '" . $owner . "', " . $zip . ", '" . $results["city"] . "', '" . $results["state"] . "', " . $share . ", " . $results["lat"] . ", " . $results["lng"] . ")";
+            callInsertQuery($query);
         }
     } elseif($item->type == $GLOBALS['data_tbl'])
     {
