@@ -305,11 +305,7 @@ function pullCurrentData($lat, $long)
     }
     #now on the last
     $row = mysqli_fetch_assoc($all_data);
-    $jsona[] = array('temp' => $row["temp"]);
-    $jsona[] = array('humidity' => $row["humidity"]);
-    $jsona[] = array('wind' => $row["wind_speed"]);
-    $jsona[] = array('light' => $row["light"]);
-    $jsona[] = array('zipcode' => $closest_Pi["zipcode"]);
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"]);
 
     $json = json_encode($jsona);
     return $json;
