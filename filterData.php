@@ -18,8 +18,7 @@
     //we have to make an array and call models filter function
     $result = pullFilteredData($filter);
     //we have a query result so we
-    var_dump($result);
-   //echo $result;
+    printQueryData($result);
 
 ?>
 </div>
