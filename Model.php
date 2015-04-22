@@ -270,8 +270,9 @@ function addJSONData($json_file)
         $temperature = $item->temp;
         $humidity = $item->humidity;
         $light = $item->light;
+        $pressure = $item->pressure;
         //make our query
-        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', '" . $wind . "', '" . $temperature . "', '" . $humidity . "', '" . $light ."')";
+        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light, pressure) VALUES ('" . $pi_ID . "', '" . $date . "', '" . $wind . "', '" . $temperature . "', '" . $humidity . "', '" . $light ."', '" . $pressure ."')";
         callInsertQuery($query);
     } else
     {
@@ -286,7 +287,7 @@ function addJSONData($json_file)
 function pullCurrentData($lat, $long)
 {
     #initialize our results array
-    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"light"=>0);
+    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"light"=>0,"pressure"=>0);
 
 
     //FIND LOCATION THINGS
@@ -305,7 +306,7 @@ function pullCurrentData($lat, $long)
     }
     #now on the last
     $row = mysqli_fetch_assoc($all_data);
-    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"]);
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"], 'pressure' => $row['pressure'], 'zipcode' => $closest_Pi["zipcode"]);
 
     $json = json_encode($jsona);
     return $json;
