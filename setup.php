@@ -46,6 +46,7 @@
 	</p>
 	<p>
 		After you have all of the materials, you're ready to start creating your own weather station.<br><br>
+		First, download our software to your Raspberry Pi by visiting our gitHub source <a href="https://github.com/KABAM-307/WeatherStation.git">here</a>.
 		If you need a Raspberry Pi tutorial, click <a href="https://www.youtube.com/watch?v=Jj4pjfU_-jo">here</a>.<br>
 		Next, you're ready to start building. To connect your sensors, check out these tutorials:
 		Check out the tutorial of how to connect the temperature sensor here.<br>
