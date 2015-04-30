@@ -14,6 +14,7 @@
 		<input type="checkbox" id="windCheck">wind</input>
 		<input type="checkbox" id="dateCheck">date</input>
 	</label>
+	<br>
 	
 	<form action="filterData.php" method="post">
 		<fieldset id="alias" style="display:none">
@@ -22,7 +23,6 @@
 			alias: <input type="text" name="alias" value="none">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="loc" style="display:none">
 			<legend>Location:</legend>
 			Enter a location:<br>
@@ -30,7 +30,6 @@
 			state: <input type="text" name="state" value="none">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="temp" style="display:none">
 			<legend>Temperature</legend>
 			Enter a temperature range:<br>
@@ -38,7 +37,6 @@
 			high: <input type="number" name="highTemp" size="7" min="-150" max="150" value="100">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="humid" style="display:none">
 			<legend>Humidity</legend>
 			Enter a humidity range:<br>
@@ -46,7 +44,6 @@
 			high: <input type="number" name="highHumid" size="7" min="-150" max="150" value="100">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="light" style="display:none">
 			<legend>Light</legend>
 			Enter a light range:<br>
@@ -54,7 +51,6 @@
 			high: <input type="number" name="highLight" size="7" min="-150" max="150" value="100">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="wind" style="display:none">
 			<legend>Wind</legend>
 			Enter a wind speed range:<br>
@@ -62,7 +58,6 @@
 			high: <input type="number" name="highSpeed" size="7" min="0" max="150" value="100">
 			<br>
 		</fieldset>
-		<br>
 		<fieldset id="date" style="display:none">
 			<legend>Date</legend>
 			Enter a date range:<br>
