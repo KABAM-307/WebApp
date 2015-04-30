@@ -313,7 +313,7 @@ function pullCurrentData($lat, $long)
     } else if ($lasttemp > $row["temp"]) {
         $difference = -1;
     }
-    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"], 'difference' => $difference);
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"], 'pressure' => $row["pressure"] ,'difference' => $difference);
     $json = json_encode($jsona);
     return $json;
 }
