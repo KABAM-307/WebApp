@@ -1,30 +1,6 @@
 <?php include_once('./header.php'); ?>
 
 <?php include_once('./subnav.php'); ?>
-<script>
-	document.getElementById('aliasCheck').onchange = function() {
-   		document.getElementById('alias').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('locCheck').onchange = function() {
-    	document.getElementById('loc').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('tempCheck').onchange = function() {
-    	document.getElementById('temp').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('humidCheck').onchange = function() {
-    	document.getElementById('humid').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('lightCheck').onchange = function() {
-    	document.getElementById('light').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('windCheck').onchange = function() {
-    	document.getElementById('wind').style.display = this.checked ? 'block' : 'none';
-	};
-	document.getElementById('dateCheck').onchange = function() {
-    	document.getElementById('date').style.display = this.checked ? 'block' : 'none';
-	};
-
-</script>
 
 <div id="basic" class="content">
 	<h1>View Data</h1>
@@ -100,5 +76,30 @@
 	<br><br>
 
 </div>
+
+<script>
+	document.getElementById('aliasCheck').onchange = function() {
+   		document.getElementById('alias').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('locCheck').onchange = function() {
+    	document.getElementById('loc').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('tempCheck').onchange = function() {
+    	document.getElementById('temp').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('humidCheck').onchange = function() {
+    	document.getElementById('humid').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('lightCheck').onchange = function() {
+    	document.getElementById('light').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('windCheck').onchange = function() {
+    	document.getElementById('wind').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('dateCheck').onchange = function() {
+    	document.getElementById('date').style.display = this.checked ? 'block' : 'none';
+	};
+
+</script>
 
 <?php include_once('./footer.php'); ?>
