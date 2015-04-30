@@ -381,7 +381,13 @@ function pullFilteredData($filter)
     $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
     $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
     $results = runQuery($finalquery);
-    return $results;
+    for($r = 0; $r < mysqli_num_rows($results); $r++)
+    {
+        $row = mysqli_fetch_assoc($results);
+        $jsona[$r] = array('date' => $row["date"],'temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'pressure' => $row["pressure"]);
+    }
+    $json = json_encode($jsona);
+    return $json;
 }
 
 #returns data from database found from query
