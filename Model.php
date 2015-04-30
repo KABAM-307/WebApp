@@ -384,7 +384,10 @@ function pullFilteredData($filter)
     for($r = 0; $r < mysqli_num_rows($results); $r++)
     {
         $row = mysqli_fetch_assoc($results);
-        $jsona[$r] = array('date' => $row["date"],'temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'pressure' => $row["pressure"]);
+        $tempquery = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
+        $tmpresults = runQuery($tempquery);
+        $tmprow = mysqli_fetch_assoc($tmpresults);
+        $jsona[$r] = array('alias' => $tmprow["alias"],'city' => $tmprow["City"],'state' => $tmprow["State"],'lat'=>$tmprow["Latitude"],'long'=>$tmprow["Longitude"],'date' => $row["date"],'temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'pressure' => $row["pressure"]);
     }
     $json = json_encode($jsona);
     return $json;
