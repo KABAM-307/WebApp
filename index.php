@@ -56,7 +56,7 @@
 		getCurrent();
 	</script>
 	<p><span id="data">Getting current location...</span></p>
-	<img src="weathericons/sun.png" style="width:304px;height:228px">
+	<img src="weathericons/sun.png" style="width:30px;height:30px">
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
