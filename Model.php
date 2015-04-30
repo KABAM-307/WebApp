@@ -285,8 +285,6 @@ function addJSONData($json_file)
 
 function pullCurrentData($lat, $long)
 {
-    #initialize our results array
-    $results = array("temp"=>0,"humidity"=>0,"wind"=>0,"light"=>0);
 
 
     //FIND LOCATION THINGS
@@ -299,14 +297,22 @@ function pullCurrentData($lat, $long)
     $all_data = runQuery($query);
 
     #get the last entry added
-    for($r = 0; $r < mysqli_num_rows($all_data) - 1; $r++)
+    for($r = 0; $r < mysqli_num_rows($all_data) - 2; $r++)
     {
         mysqli_fetch_assoc($all_data);
     }
     #now on the last
     $row = mysqli_fetch_assoc($all_data);
-    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"]);
-
+    //get last temp
+    $lasttemp = $row["temp"];
+    $row = mysqli_fetch_assoc($all_data);
+    $difference = 0;
+    if ($lasttemp < $row["temp"]) {
+        $difference = 1;
+    } else if ($lasttemp > $row["temp"]) {
+        $difference = -1;
+    }
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"], 'difference' => $difference);
     $json = json_encode($jsona);
     return $json;
 }
