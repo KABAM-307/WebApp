@@ -33,9 +33,11 @@
 			$("#data").append("<p>Light: "+data.light+" lux</p>");
 //			$("#data").append("<p>Wind speed: "+data.wind+" mph</p>");
 			$("#data").append("<p>ZIP code: "+data.zipcode+"</p>");
-			if (data.light) {
+			if (data.light > 20) {
 				document.getElementById('sun').style.display = 'block';
+				document.getElementById('moon').style.display = 'none';
 			} else {
+				document.getElementById('moon').style.display = 'block';
 				document.getElementById('sun').style.display = 'none';
 			}
 		});
@@ -61,6 +63,7 @@
 	</script>
 	<p><span id="data">Getting current location...</span></p>
 	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px" style="display:none">
+	<img id="moon" src="weathericons/moon.png" style="width:50px;height:50px" style="display:none">
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
