@@ -31,7 +31,7 @@
 			$("#data").append("<p>Humidity: "+data.humidity+"%</p>");
 			$("#data").append("<p>Pressure: "+data.pressure+" mbars</p>");
 			$("#data").append("<p>Light: "+data.light+" lux</p>");
-			$("#data").append("<p>Wind speed: "+data.wind+" mph</p>");
+//			$("#data").append("<p>Wind speed: "+data.wind+" mph</p>");
 			$("#data").append("<p>ZIP code: "+data.zipcode+"</p>");
 			
 		});
