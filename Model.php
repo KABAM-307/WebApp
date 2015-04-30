@@ -270,8 +270,9 @@ function addJSONData($json_file)
         $temperature = $item->temp;
         $humidity = $item->humidity;
         $light = $item->light;
+        $pressure = $item->pressure;
         //make our query
-        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light) VALUES ('" . $pi_ID . "', '" . $date . "', '" . $wind . "', '" . $temperature . "', '" . $humidity . "', '" . $light ."')";
+        $query = "INSERT INTO " . $GLOBALS['data_tbl'] . " (pi_ID, date, wind_speed, temp, humidity, light, pressure) VALUES ('" . $pi_ID . "', '" . $date . "', '" . $wind . "', '" . $temperature . "', '" . $humidity . "', '" . $light ."', '" . $pressure ."')";
         callInsertQuery($query);
     } else
     {
