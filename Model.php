@@ -192,7 +192,7 @@ function findClosestPi($lat, $long)
     $all_data = runQuery($query);
     $min_dist = -1;
     $date = date("Y-m-d G:i:s");
-    echo "Number of results: " . mysql_num_rows($all_data) . "<br>";
+    echo "Number of results: " . mysqli_num_rows($all_data) . "<br>";
     for ($r = 0; $r < mysqli_num_rows($all_data); $r++) {
         $row = mysqli_fetch_assoc($all_data);
         $row_lat = $row["Latitude"];
