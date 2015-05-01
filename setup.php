@@ -38,15 +38,16 @@
 		<li>Sensors:</li>
 		We purchased our sensors from Adafruit
 		<ol>
-			<li>Temperature/Humidity Sensor - http://www.adafruit.com/products/393</li>
-			<li>Pressure Sensor - http://www.adafruit.com/products/1603</li>
-			<li>Light Sensor - http://www.adafruit.com/products/161</li>
+			<li>Temperature/Humidity Sensor - <a href = "http://www.adafruit.com/products/393"> http://www.adafruit.com/products/393</a></li>
+			<li>Pressure Sensor - <a href = "http://www.adafruit.com/products/1603">http://www.adafruit.com/products/1603</a></li>
+			<li>Light Sensor - <a href = "http://www.adafruit.com/products/161">http://www.adafruit.com/products/161</a></li>
 		</ol>
 		</ul>
 	</p>
 	<p>
 		After you have all of the materials, you're ready to start creating your own weather station.<br><br>
 		First, download our software to your Raspberry Pi by visiting our GitHub source code for the weatherStation <a href="https://github.com/KABAM-307/WeatherStation.git">here</a>.
+		<br><br>
 		If you need a Raspberry Pi tutorial visit our Product Info page.<br><br>
 		Next, you're ready to start building. To connect your sensors, go to our Product Info page and check out the links!<br><br>
 		After the sensors are connected to the Pi and you have downloaded our weatherStation code to your Pi, the next step is to run the code. 
@@ -56,7 +57,7 @@
 		If you setup everything correctly this Makefile should take care of all of the necessary code compilation for you.<br><br>
 		Lastly run the Main program by typing "java Main"<br><br>
 		This program will ask you a series of questions to define the settings for your weatherStation.<br><br>
-		After you have completed answering all of the questions you should get a message that says "You've successfully setup your weather station!".<br>
+		After you have completed answering all of the questions you should get a message that says "You've successfully setup your weather station!".<br><br>
 		If at anytime you would like to reconfigure the settings of your weatherStation just rerun the Main program with the flag --reconfig.<br><br>
 		Eg:  java Main --reconfig
 		<br><br>
@@ -96,9 +97,9 @@
 		The Technical Details section provides the technical specs of the sensors.<br>
 		The Learn section has additional videos that are great resources to learn about the sensors.<br>
 		<ol>
-			<li>Temperature/Humidity Sensor - http://www.adafruit.com/products/393</li>
-			<li>Pressure Sensor - http://www.adafruit.com/products/1603</li>
-			<li>Light Sensor - http://www.adafruit.com/products/161</li>
+			<li>Temperature/Humidity Sensor - <a href = "http://www.adafruit.com/products/393"> http://www.adafruit.com/products/393</a></li>
+			<li>Pressure Sensor - <a href = "http://www.adafruit.com/products/1603">http://www.adafruit.com/products/1603</a></li>
+			<li>Light Sensor - <a href = "http://www.adafruit.com/products/161">http://www.adafruit.com/products/161</a></li>
 		</ol>
 	</p>
 </div>
