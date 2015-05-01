@@ -88,7 +88,7 @@
 		The Personal Pi in the Sky can be created by anyone. Follow the instructions on this page to learn how to create your own Personal Pi in the Sky.
 		<br><br>
 		If you are new to the Raspberry Pi click <a href="https://www.youtube.com/watch?v=Jj4pjfU_-jo">here</a> for a quick tutorial.
-		Specifics of the Raspberry Pi can be found here. <br><br>
+		Specifics of the Raspberry Pi can be found <a href = "https://www.raspberrypi.org/products/model-b-plus/">at this link</a>. <br><br>
 		
 		The sensors we used were all purchased from Adafruit. <br>
 		For more information on each sensor and how to connect them to the Pi, visit the links below.<br><br>
