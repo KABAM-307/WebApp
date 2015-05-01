@@ -445,9 +445,7 @@ function pullFilteredData($filter, $checks)
             $jsona[$r]["lat"] = $tmprow["Latitude"];
             $jsona[$r]["long"] = $tmprow["Longitude"];
         }
-        if ($checks["hasDate"]) {
-            $jsona[$r]["date"] = $row["date"];
-        }
+        $jsona[$r]["date"] = $row["date"];
         if ($checks["hasTemp"]) {
             $jsona[$r]["temp"] = $row["temp"];
         }
