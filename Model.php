@@ -208,6 +208,7 @@ function findClosestPi($lat, $long)
             #now on the last
             $daterow = mysqli_fetch_assoc($dateresults);
             $diff = (strtotime($date) - strtotime($daterow["date"]))/3600;
+            echo "Difference: " . $diff . "<br>";
             if ($diff <= 1.0) {
                 $pi_info["pi_ID"] = $row["pi_ID"];
                 $pi_info["zipcode"] = $row["zipcode"];
@@ -216,7 +217,7 @@ function findClosestPi($lat, $long)
         }
     }
 
-    if ($min_dist > 10) {
+    if ($min_dist > 10 || $min_dist == -1) {
       echo $min_dist;
       return false;
     } else {
