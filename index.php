@@ -76,7 +76,7 @@
         	unit: 'f',
             success: function(data) {
             	console.log(data);
-                $("#forecast").html("<p>Forecast for: "+data.forecast[1].city+", "+forecast[1].region);
+                $("#forecast").html("<p>Forecast for: "+data.forecast[1].city+", "+data.forecast[1].region);
                 $("#forecast").append(" on "+data.forecast[1].date+"</p>");
                 $("#forecast").append("<p>High temperature: "+data.forecast[1].high+"&deg; F</p>");
                 $("#forecast").append("<p>Low temperature: "+data.forecast[1].low+"&deg; F</p>");
