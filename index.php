@@ -59,7 +59,36 @@
       });
     }
   }
+  
+  function getForecast() {
+    var lat = 0;
+    var lon = 0;
 
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        document.getElementById("data").innerHTML = "Finding forecast...";
+        lat = position.coords.latitude;
+        lon = position.coords.longitude;
+
+        $.simpleWeather({
+        location: lat+","+lon,
+        	unit: 'f',
+            success: function(data) {
+            	console.log(data);
+                $("#forecast").html("<p>Forecast for: "+forecast[1].city+", "+forecast[1].region);
+                $("#forecast").append(" on "+forecast[1].date+"</p>");
+                $("#forecast").append("<p>High temperature: "+forecast[1].high+"&deg; F</p>");
+                $("#forecast").append("<p>Low temperature: "+forecast[1].low+"&deg; F</p>");
+                $("#forecast").append("<p>"+forecast[1].text+"</p>");
+              },
+            error: function(error) {
+                $("#forecast").html('<p>'+error+'</p>');
+              }
+            });
+	  	});
+		}
+	}
+	
 </script>
 
 <p id="test"></p>
@@ -77,6 +106,7 @@
 	<img id="moon" src="weathericons/moon.png" style="width:50px;height:50px;display:none">
 	<img id="rain" src="weathericons/rain.png" style="width:50px;height:50px;display:none">
 	<img id="cloudy" src="weathericons/cloudy.png" style="width:50px;height:50px;display:none">
+	<p><span id="forecast">Finding forecast...</span></p>
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
