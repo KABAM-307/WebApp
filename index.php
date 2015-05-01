@@ -35,28 +35,21 @@
 			$("#data").append("<p>ZIP code: "+data.zipcode+"</p>");
 			if (data.light > 20) {
 				
-				if(data.humidity > 60){
-					
-				document.getElementById('rain').style.display = 'block';
-				document.getElementById('sun').style.display = 'block';
-				document.getElementById('moon').style.display = 'none';
-				document.getElementById('cloudy').style.display = 'none';
-				}
-				
-				else if(data.humidity > 30){
-					
+				if(data.humidity > 60) {	
+					document.getElementById('rain').style.display = 'block';
+					document.getElementById('sun').style.display = 'block';
+					document.getElementById('moon').style.display = 'none';
+					document.getElementById('cloudy').style.display = 'none';
+				} else if(data.humidity > 30){	
+					document.getElementById('rain').style.display = 'none';
+					document.getElementById('sun').style.display = 'block';
+					document.getElementById('moon').style.display = 'none';
+					document.getElementById('cloudy').style.display = 'block';		
+				} else {
 				document.getElementById('rain').style.display = 'none';
 				document.getElementById('sun').style.display = 'block';
 				document.getElementById('moon').style.display = 'none';
-				document.getElementById('cloudy').style.display = 'block';
-					
-				}
-				else{
-				document.getElementById('rain').style.display = 'none';
-				document.getElementById('sun').style.display = 'block';
-				document.getElementById('moon').style.display = 'none';
-				document.getElementById('cloudy').style.display = 'none';
-				
+				document.getElementById('cloudy').style.display = 'none';		
 				}
 			} else {
 				document.getElementById('rain').style.display = 'none';
@@ -88,8 +81,8 @@
 	<p><span id="data">Getting current location...</span></p>
 	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px" style="display:none">
 	<img id="moon" src="weathericons/moon.png" style="width:50px;height:50px" style="display:none">
-	<img id="sun" src="weathericons/rain.png" style="width:50px;height:50px" style="display:none">
-	<img id="sun" src="weathericons/cloudy.png" style="width:50px;height:50px" style="display:none">
+	<img id="rain" src="weathericons/rain.png" style="width:50px;height:50px" style="display:none">
+	<img id="cloudy" src="weathericons/cloudy.png" style="width:50px;height:50px" style="display:none">
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
