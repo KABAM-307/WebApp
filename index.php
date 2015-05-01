@@ -76,11 +76,11 @@
         	unit: 'f',
             success: function(data) {
             	console.log(data);
-                $("#forecast").html("<p>Forecast for: "+forecast[1].city+", "+forecast[1].region);
-                $("#forecast").append(" on "+forecast[1].date+"</p>");
-                $("#forecast").append("<p>High temperature: "+forecast[1].high+"&deg; F</p>");
-                $("#forecast").append("<p>Low temperature: "+forecast[1].low+"&deg; F</p>");
-                $("#forecast").append("<p>"+forecast[1].text+"</p>");
+                $("#forecast").html("<p>Forecast for: "+data.forecast[1].city+", "+data.forecast[1].region);
+                $("#forecast").append(" on "+data.forecast[1].date+"</p>");
+                $("#forecast").append("<p>High temperature: "+data.forecast[1].high+"&deg; F</p>");
+                $("#forecast").append("<p>Low temperature: "+data.forecast[1].low+"&deg; F</p>");
+                $("#forecast").append("<p>"+data.forecast[1].text+"</p>");
               },
             error: function(error) {
                 $("#forecast").html('<p>'+error+'</p>');
@@ -101,6 +101,7 @@
 
 	<script type="text/javascript">
 		getCurrent();
+		getForecast();
 	</script>
 	<p><span id="data">Getting current location...</span></p>
 	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px;display:none">
