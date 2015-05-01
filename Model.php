@@ -196,11 +196,7 @@ function findClosestPi($lat, $long)
         $row = mysqli_fetch_assoc($all_data);
         $row_lat = $row["Latitude"];
         $row_lon = $row["Longitude"];
-        echo
         $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
-        echo "Target: " . $lat . ", " . $long . "<br>";
-        echo "Found: " . $row_lat . ", " . $row_lon . "<br>";
-        echo $row["alias"] . " distance is " . $row_dist . "<br>";
         if ($min_dist == -1 || $row_dist < $min_dist) {
             //check and see when last update for this pi_ID was
             $datequery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
@@ -212,8 +208,6 @@ function findClosestPi($lat, $long)
             #now on the last
             $daterow = mysqli_fetch_assoc($dateresults);
             $diff = (strtotime($date) - strtotime($daterow["date"]))/3600;
-            echo $row["alias"] . " updated on " . $daterow["date"] . "<br>";
-            echo "Difference: " . $diff . "<br>";
             if ($diff <= 1.0) {
                 $pi_info["pi_ID"] = $row["pi_ID"];
                 $pi_info["zipcode"] = $row["zipcode"];
@@ -223,7 +217,6 @@ function findClosestPi($lat, $long)
     }
 
     if ($min_dist > 10 || $min_dist == -1) {
-      echo $min_dist;
       return false;
     } else {
       return  $pi_info;
