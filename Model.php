@@ -192,13 +192,14 @@ function findClosestPi($lat, $long)
     $all_data = runQuery($query);
     $min_dist = -1;
     $date = date("Y-m-d G:i:s");
-    echo "Number of results: " . mysqli_num_rows($all_data) . "<br>";
     for ($r = 0; $r < mysqli_num_rows($all_data); $r++) {
-        echo "R=" . $r . "<br>";
         $row = mysqli_fetch_assoc($all_data);
         $row_lat = $row["Latitude"];
         $row_lon = $row["Longitude"];
+        echo
         $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
+        echo "Target: " . $lat . ", " . $long . "<br>";
+        echo "Found: " . $row_lat . ", " . $row_lon . "<br>";
         echo $row["alias"] . " distance is " . $row_dist . "<br>";
         if ($min_dist == -1 || $row_dist < $min_dist) {
             //check and see when last update for this pi_ID was
