@@ -86,10 +86,10 @@
 		getCurrent();
 	</script>
 	<p><span id="data">Getting current location...</span></p>
-	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px" style="display:none">
-	<img id="moon" src="weathericons/moon.png" style="width:50px;height:50px" style="display:none">
-	<img id="rain" src="weathericons/rain.png" style="width:50px;height:50px" style="display:none">
-	<img id="cloudy" src="weathericons/cloudy.png" style="width:50px;height:50px" style="display:none">
+	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px;display:none">
+	<img id="moon" src="weathericons/moon.png" style="width:50px;height:50px;display:none">
+	<img id="rain" src="weathericons/rain.png" style="width:50px;height:50px;display:none">
+	<img id="cloudy" src="weathericons/cloudy.png" style="width:50px;height:50px;display:none">
 	<p>
 		<br>
 		Personal Pi in the Sky was created by Purdue University Computer Science students
