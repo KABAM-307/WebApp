@@ -173,20 +173,13 @@ function getZip($city, $state)
 }
 
 #find distance between two lat/lon points
-function getDistance($lat1, $lon1, $lat2, $lon2, $unit) {
+function getDistance($lat1, $lat2, $lon1, $lon2) {
     $theta = $lon1 - $lon2;
     $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
     $dist = acos($dist);
     $dist = rad2deg($dist);
     $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
-    if ($unit == "K") {
-        return ($miles * 1.609344);
-    } else if ($unit == "N") {
-      return ($miles * 0.8684);
-    } else {
-        return $miles;
-    }
+    return $miles;
 }
 
 
@@ -209,8 +202,13 @@ function findClosestPi($lat, $long)
             $min_dist = $row_dist;
         }
     }
-    //echo "Closest pi has id of " . $pi_ID . " with a distance of " . $min_dist . " miles";
-    return  $pi_info;
+
+    if ($min_dist > 10) {
+      echo $min_dist;
+      return false;
+    } else {
+      return  $pi_info;
+    }
 }
 
 
@@ -290,6 +288,10 @@ function pullCurrentData($lat, $long)
 
     //FIND LOCATION THINGS
     $closest_Pi = findClosestPi($lat,$long);
+
+    if ($closest_Pi === false) {
+      return json_encode(array("error"=>"far"));
+    }
 
     #request the most recent update from the given pi
 
