@@ -14,6 +14,10 @@
 
 	function getCurrent() {
     	$.getJSON("getAlias.php?alias=" + getParameterByName("alias"), function(data) {
+    		if (data === undefined) {
+    			$("#error").show();
+    			return;
+    		}
     		$("#data").html("<p>Temperature: "+data.temp+"&deg; F</p>");
             $("#data").append("<p>Humidity: "+data.humidity+"%</p>");
             $("#data").append("<p>Pressure: "+data.pressure+" mbars</p>");
@@ -21,6 +25,7 @@
             $("#data").append("<p>Wind speed: "+data.wind+" mph</p>");
             $("#data").append("<p>ZIP code: "+data.zipcode+"</p>");
     		});
+    	
 	}
 </script>
 
@@ -29,9 +34,9 @@
 	<script type="text/javascript">
 		getCurrent();
 	</script>
-	<p><span id="data">Getting current location...</span></p>
+	<p><span id="data">Getting recent alias data...</span></p>
 
-	<div id="error" class="content">
+	<div id="error" class="content" style="display:none">
 		<p>We're sorry! The provided alias was not recognized by our system.</p>
 	</div>
 </div>
