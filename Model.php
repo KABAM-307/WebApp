@@ -415,22 +415,22 @@ function pullFilteredData($filter, $checks)
             $jsona[$r]["long"] = $tmprow["Longitude"];
         }
         if ($checks["hasDate"]) {
-            $jsona[$r]["date"] = $tmprow["date"];
+            $jsona[$r]["date"] = $row["date"];
         }
         if ($checks["hasTemp"]) {
-            $jsona[$r]["temp"] = $tmprow["temp"];
+            $jsona[$r]["temp"] = $row["temp"];
         }
         if ($checks["hasHumid"]) {
-            $jsona[$r]["humidity"] = $tmprow["humidity"];
+            $jsona[$r]["humidity"] = $row["humidity"];
         }
         if ($checks["hasWind"]) {
-            $jsona[$r]["wind"] = $tmprow["wind_speed"];
+            $jsona[$r]["wind"] = $row["wind_speed"];
         }
         if ($checks["hasLight"]) {
-            $jsona[$r]["light"] = $tmprow["light"];
+            $jsona[$r]["light"] = $row["light"];
         }
         if ($checks["hasPress"]) {
-            $jsona[$r]["pressure"] = $tmprow["pressure"];
+            $jsona[$r]["pressure"] = $row["pressure"];
         }
     }
     $json = json_encode($jsona);
