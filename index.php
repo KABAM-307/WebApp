@@ -78,10 +78,10 @@
                 $("#forecast").append("High temperature: "+data.forecast[1].high+"&deg; F<br>");
                 $("#forecast").append("Low temperature: "+data.forecast[1].low+"&deg; F<br>");
                 $("#forecast").append(""+data.forecast[1].text+"</p>");
-                $("#forecast").append("<p>Forecast on "+data.forecast[1].date);
-                $("#forecast").append("High temperature: "+data.forecast[1].high+"&deg; F<br>");
-                $("#forecast").append("Low temperature: "+data.forecast[1].low+"&deg; F<br>");
-                $("#forecast").append(""+data.forecast[1].text+"</p>");
+                $("#forecast").append("<p>Forecast on "+data.forecast[2].date);
+                $("#forecast").append("High temperature: "+data.forecast[2].high+"&deg; F<br>");
+                $("#forecast").append("Low temperature: "+data.forecast[2].low+"&deg; F<br>");
+                $("#forecast").append(""+data.forecast[2].text+"</p>");
               },
             error: function(error) {
                 $("#forecast").html('<p>'+error+'</p>');
