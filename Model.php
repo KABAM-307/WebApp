@@ -278,24 +278,10 @@ function addJSONData($json_file)
     }
 }
 
-#FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
 
-#handles request for current data and converts into SQL
-
-function pullCurrentData($lat, $long)
-{
-
-
-    //FIND LOCATION THINGS
-    $closest_Pi = findClosestPi($lat,$long);
-
-    if ($closest_Pi === false) {
-      return json_encode(array("error"=>"far"));
-    }
-
-    #request the most recent update from the given pi
-
-    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $closest_Pi["pi_ID"] . "'";
+#generically pulls most recent data from given pi_ID
+function pullRecentData($pi_ID) {
+    $query = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
 
     $all_data = runQuery($query);
 
@@ -315,9 +301,41 @@ function pullCurrentData($lat, $long)
     } else if ($lasttemp > $row["temp"]) {
         $difference = -1;
     }
-    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $closest_Pi["zipcode"], 'pressure' => $row["pressure"] ,'difference' => $difference);
+    #get zipcode
+    $zipquery = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $pi_ID . "'";
+    $zipdata = runQuery($zipquery);
+    $ziprow = mysqli_fetch_assoc($zipdata);
+    $jsona = array('temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'zipcode' => $ziprow["zipcode"], 'pressure' => $row["pressure"] ,'difference' => $difference);
     $json = json_encode($jsona);
     return $json;
+}
+
+function pullAliasData($alias) {
+    #convert alias to pi_ID
+    $query = "SELECT * FROM " . $GLOBALS["info_tbl"] . " WHERE alias='" . $alias . "'";
+    $data = runQuery($query);
+    $row = mysqli_fetch_assoc($data);
+    return pullRecentData($row["pi_ID"]);
+}
+
+#FUNCTIONS THAT WILL RETURN DATA FROM THE DATABASE
+
+#handles request for current data and converts into SQL
+
+function pullCurrentData($lat, $long)
+{
+
+
+    //FIND LOCATION THINGS
+    $closest_Pi = findClosestPi($lat,$long);
+
+    if ($closest_Pi === false) {
+      return json_encode(array("error"=>"far"));
+    }
+    #request the most recent update from the given pi
+    return pullRecentData($closest_Pi["pi_ID"]);
+
+
 }
 
 #handles request for filtered data and converts into SQL
