@@ -38,7 +38,7 @@
 				if(data.humidity > 60){
 					
 				document.getElementById('rain').style.display = 'block';
-				document.getElementById('sun').style.display = 'none';
+				document.getElementById('sun').style.display = 'block';
 				document.getElementById('moon').style.display = 'none';
 				document.getElementById('cloudy').style.display = 'none';
 				}
@@ -46,7 +46,7 @@
 				else if(data.humidity > 30){
 					
 				document.getElementById('rain').style.display = 'none';
-				document.getElementById('sun').style.display = 'none';
+				document.getElementById('sun').style.display = 'block';
 				document.getElementById('moon').style.display = 'none';
 				document.getElementById('cloudy').style.display = 'block';
 					
