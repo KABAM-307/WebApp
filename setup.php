@@ -86,7 +86,7 @@
 	</h1>
 	<p>
 		The Personal Pi in the Sky can be created by anyone. Follow the instructions on this page to learn how to create your own Personal Pi in the Sky.
-		
+		<br><br>
 		If you are new to the Raspberry Pi click <a href="https://www.youtube.com/watch?v=Jj4pjfU_-jo">here</a> for a quick tutorial.
 		Specifics of the Raspberry Pi can be found here. <br><br>
 		
