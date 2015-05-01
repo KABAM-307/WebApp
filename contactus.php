@@ -7,7 +7,8 @@
 		Contact Us
 	</h1>
 	<p>
-		This page will display contact information for members of this project.
+		For more information about Personal Pi in the Sky,<br>
+		contact us at kabamweather@gmail.com
 	</p>
 </div>
 
