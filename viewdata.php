@@ -10,11 +10,23 @@
 	<form action="filterData.php" method="post">
 		<label>
 			<input type="checkbox" id="aliasCheckid" name="aliasCheck">alias</input>
+		</label>
+		<label>
 			<input type="checkbox" id="locCheckid" name="locCheck">location</input>
+		</label>
+		<label>
 			<input type="checkbox" id="tempCheckid" name="tempCheck">temperature</input>
+		</label>
+		<label>
 			<input type="checkbox" id="humidCheckid" name="humidCheck">humidity</input>
+		</label>
+		<label>
 			<input type="checkbox" id="lightCheckid" name="lightCheck">light</input>
+		</label>
+		<label>
 			<input type="checkbox" id="windCheckid" name="windCheck">wind</input>
+		</label>
+		<label>
 			<input type="checkbox" id="dateCheckid" name="dateCheck">date</input>
 		</label>
 		<fieldset id="alias" style="display:none">
