@@ -21,7 +21,7 @@
             $("#data").append("<p>Wind speed: "+data.wind+" mph</p>");
             $("#data").append("<p>ZIP code: "+data.zipcode+"</p>");
     		}
-    	});
+    	);
 
 </script>
 
