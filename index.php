@@ -76,11 +76,10 @@
         	unit: 'f',
             success: function(data) {
             	console.log(data);
-                $("#forecast").html("<p>Forecast for: "+data.forecast[1].city+", "+data.forecast[1].region);
-                $("#forecast").append(" on "+data.forecast[1].date+"</p>");
-                $("#forecast").append("<p>High temperature: "+data.forecast[1].high+"&deg; F</p>");
-                $("#forecast").append("<p>Low temperature: "+data.forecast[1].low+"&deg; F</p>");
-                $("#forecast").append("<p>"+data.forecast[1].text+"</p>");
+                $("#forecast").html("<p>Forecast for: "+data.city+", "+data.forecast[1].region+" on "+data.forecast[1].date+"<br>");
+                $("#forecast").append("High temperature: "+data.forecast[1].high+"&deg; F<br>");
+                $("#forecast").append("Low temperature: "+data.forecast[1].low+"&deg; F<br>");
+                $("#forecast").append(""+data.forecast[1].text+"</p>");
               },
             error: function(error) {
                 $("#forecast").html('<p>'+error+'</p>');
