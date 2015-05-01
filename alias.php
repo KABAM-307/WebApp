@@ -14,7 +14,7 @@
 
 	function getCurrent() {
 		alias = getParameterByName("alias");
-		if (alias == null) {
+		if (alias == "") {
 			alias = localStorage.getItem("alias");
 		}
 		else {
