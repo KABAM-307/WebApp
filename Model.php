@@ -204,7 +204,7 @@ function findClosestPi($lat, $long)
             //check and see when last update for this pi_ID was
             $datequery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
             $dateresults = runQuery($datequery);
-            for($r = 0; $r < mysqli_num_rows($dateresults) - 1; $r++)
+            for($s = 0; $s < mysqli_num_rows($dateresults) - 1; $s++)
             {
                 mysqli_fetch_assoc($dateresults);
             }
