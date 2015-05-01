@@ -48,11 +48,13 @@
 		After you have all of the materials, you're ready to start creating your own weather station.<br><br>
 		First, download our software to your Raspberry Pi by visiting our GitHub source code for the weatherStation <a href="https://github.com/KABAM-307/WeatherStation.git">here</a>.
 		<br><br>
+		You also need to make sure your Raspberry Pi has the <a href ="http://wiringpi.com/download-and-install/">wiringPi</a> library available on it.
+		Just follow the directions in the provided link while using the terminal on your Pi.
 		If you need a Raspberry Pi tutorial visit our Product Info page.<br><br>
 		Next, you're ready to start building. To connect your sensors, go to our Product Info page and check out the links!<br><br>
 		After the sensors are connected to the Pi and you have downloaded our weatherStation code to your Pi, the next step is to run the code. 
 		
-		To run our code navigate to the directory on your Pi that contains our WeatherStation code.<br><br>
+		To run our code navigate to the "Weather\ Station/src/weatherStation" directory on your Pi that contains our WeatherStation code.<br><br>
 		From there type "make" in your terminal to compile the Makefile we have provided.<br><br>
 		If you setup everything correctly this Makefile should take care of all of the necessary code compilation for you.<br><br>
 		Lastly run the Main program by typing "java Main"<br><br>
