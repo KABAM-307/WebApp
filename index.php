@@ -66,7 +66,6 @@
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
-        document.getElementById("data").innerHTML = "Finding forecast...";
         lat = position.coords.latitude;
         lon = position.coords.longitude;
 
@@ -75,11 +74,11 @@
         	unit: 'f',
             success: function(data) {
             	console.log(data);
-                $("#forecast").html("<p>Forecast for: "+data.city+", "+data.region+" on "+data.forecast[1].date+"<br>");
+                $("#forecast").html("<p>Forecast for: "+data.city+", "+data.region+" on "+data.forecast[1].date);
                 $("#forecast").append("High temperature: "+data.forecast[1].high+"&deg; F<br>");
                 $("#forecast").append("Low temperature: "+data.forecast[1].low+"&deg; F<br>");
                 $("#forecast").append(""+data.forecast[1].text+"</p>");
-                $("#forecast").append("<p>Forecast on "+data.forecast[1].date+"<br>");
+                $("#forecast").append("<p>Forecast on "+data.forecast[1].date);
                 $("#forecast").append("High temperature: "+data.forecast[1].high+"&deg; F<br>");
                 $("#forecast").append("Low temperature: "+data.forecast[1].low+"&deg; F<br>");
                 $("#forecast").append(""+data.forecast[1].text+"</p>");
