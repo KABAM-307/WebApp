@@ -101,6 +101,7 @@
 
 	<script type="text/javascript">
 		getCurrent();
+		getForecast();
 	</script>
 	<p><span id="data">Getting current location...</span></p>
 	<img id="sun" src="weathericons/sun.png" style="width:50px;height:50px;display:none">
