@@ -47,17 +47,17 @@
 	<p>
 		After you have all of the materials, you're ready to start creating your own weather station.<br><br>
 		First, download our software to your Raspberry Pi by visiting our GitHub source code for the weatherStation <a href="https://github.com/KABAM-307/WeatherStation.git">here</a>.
-		If you need a Raspberry Pi tutorial visit our Product Info page.  <br><br>
+		If you need a Raspberry Pi tutorial visit our Product Info page.<br><br>
 		Next, you're ready to start building. To connect your sensors, go to our Product Info page and check out the links!<br><br>
 		After the sensors are connected to the Pi and you have downloaded our weatherStation code to your Pi, the next step is to run the code. 
 		
-		To run our code navigate to the directory on your Pi that contains our WeatherStation code.<br>
-		From there type "make" in your terminal to compile the Makefile we have provided.<br>
-		If you setup everything correctly this Makefile should take care of all of the necessary code compilation for you.<br>
-		Lastly run the Main program by typing "java Main"<br>
+		To run our code navigate to the directory on your Pi that contains our WeatherStation code.<br><br>
+		From there type "make" in your terminal to compile the Makefile we have provided.<br><br>
+		If you setup everything correctly this Makefile should take care of all of the necessary code compilation for you.<br><br>
+		Lastly run the Main program by typing "java Main"<br><br>
 		This program will ask you a series of questions to define the settings for your weatherStation.<br><br>
 		After you have completed answering all of the questions you should get a message that says "You've successfully setup your weather station!".<br>
-		If at anytime you would like to reconfigure the settings of your weatherStation just rerun the Main program with the flag --reconfig.<br>
+		If at anytime you would like to reconfigure the settings of your weatherStation just rerun the Main program with the flag --reconfig.<br><br>
 		Eg:  java Main --reconfig
 		<br><br>
 		You're done! You now have your very own Personal Pi in the Sky! Enjoy!
@@ -71,9 +71,10 @@
 	<p>
 		Our source code is publicly available on GitHub. 
 		
+		Click <a href="https://github.com/KABAM-307">here</a> to view our source code.<br><br>
 		
-		The WeatherStation repository contains all of the code that the Raspberry Pi weather station uses to run.<br>
-		
+		The WeatherStation repository contains all of the code that the Raspberry Pi weather station uses to run.
+		<br><br>		
 		The WebApp repository contains the code for the setup and running of the web application to view weather data.
 	</p>
 </div>
@@ -92,7 +93,7 @@
 		For more information on each sensor and how to connect them to the Pi, visit the links below.<br><br>
 		
 		The Description section gives an overview of the sensor and how to connect it to the Pi.<br>
-		The Technical Details section provides the technical specs of the sensors. <br>
+		The Technical Details section provides the technical specs of the sensors.<br>
 		The Learn section has additional videos that are great resources to learn about the sensors.<br>
 		<ol>
 			<li>Temperature/Humidity Sensor - http://www.adafruit.com/products/393</li>
