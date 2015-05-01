@@ -197,7 +197,7 @@ function findClosestPi($lat, $long)
         $row_lat = $row["Latitude"];
         $row_lon = $row["Longitude"];
         $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
-        if ($r == 0 || $row_dist < $min_dist) {
+        if ($min_dist == -1 || $row_dist < $min_dist) {
             //check and see when last update for this pi_ID was
             $datequery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
             $dateresults = runQuery($datequery);
