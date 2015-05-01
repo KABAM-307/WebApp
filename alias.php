@@ -13,7 +13,14 @@
 	}
 
 	function getCurrent() {
-    	$.getJSON("getAlias.php?alias=" + getParameterByName("alias"))
+		alias = getParameterByName("alias");
+		if (alias == null) {
+			alias = localStorage.getItem("alias");
+		}
+		else {
+			localStorage.setItem("alias", alias);
+		}
+    	$.getJSON("getAlias.php?alias=" + alias)
     		.done(function(data) {
     			$("#data").html("<p>Temperature: "+data.temp+"&deg; F</p>");
             	$("#data").append("<p>Humidity: "+data.humidity+"%</p>");

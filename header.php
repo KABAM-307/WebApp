@@ -33,6 +33,11 @@
         Set-up
       </button>
     </a>
+	<a href="alias.php">
+      <button class="floatLeft" id="navbarbutton">
+        View Specific WS
+      </button>
+    </a>
     <a href="aboutus.php">
       <button class="floatRight" id="navbarbutton">
         About
