@@ -34,7 +34,7 @@
     </a>
 	<a href="alias.php">
       <button class="floatLeft" id="navbarbutton">
-        View Specific WS
+        View Favorite
       </button>
     </a>
     <a href="aboutus.php">
