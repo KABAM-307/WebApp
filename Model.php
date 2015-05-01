@@ -322,24 +322,27 @@ function pullCurrentData($lat, $long)
 
 #handles request for filtered data and converts into SQL
 
-function pullFilteredData($filter)
+function pullFilteredData($filter, $checks)
 {
     /*
      * $filter = array("alias"=>$_POST["alias"],"city"=>$_POST["city"],"state"=>$_POST["state"],"lowTemp"=>$_POST["lowTemp"],"highTemp"=>$_POST["highTemp"],
         "lowHumid"=>$_POST["lowHumid"],"highHumid"=>$_POST["highHumid"],"lowLight"=>$_POST["lowLight"],"highLight"=>$_POST["highLight"],
         "lowSpeed"=>$_POST["lowSpeed"],"highSpeed"=>$_POST["highSpeed"],"lowDate"=>$_POST["lowDate"],"highDate"=>$_POST["highDate"]);
+
+        $checks = array("hasAlias"=>$_POST["aliasCheck"],"hasLoc"=>$_POST["locCheck"], "hasTemp"=>$_POST["tempCheck"], "hasHumid"=>$_POST["humidCheck"],
+        "hasLight"=>$_POST["lightCheck"], "hasWind"=>$_POST["windCheck"], "hasDate"=>$_POST["dateCheck"]);
      */
 
     //after receiving a filter we need to run a query
     //first grab PI_IDs that match what we need
     $query = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE share=1";
     //check if we need
-    if ($filter["alias"] != "none") {
+    if ($filter["alias"] != "none" && $checks["hasAlias"]) {
         //using alias
         $query = $query . " AND alias='" . $filter["alias"] . "'";
     }
 
-    if ($filter["city"] != "none" && $filter["state"] != "none") {
+    if ($filter["city"] != "none" && $filter["state"] != "none" && $checks["hasLoc"]) {
         //using a city as well
         $zip = getZip($filter["city"], $filter["state"]);
         $query = $query . " AND zipcode=" . $zip;
@@ -365,23 +368,36 @@ function pullFilteredData($filter)
     } else { return null; }
     //add other filters that they want
     //temperature
-    $finalquery = $finalquery . " AND (temp BETWEEN " . $filter["lowTemp"] . " AND " . $filter["highTemp"] . ")";
-    //humidity
-    $finalquery = $finalquery . " AND (humidity BETWEEN " . $filter["lowHumid"] . " AND " . $filter["highHumid"] . ")";
-    //pressure
-    $finalquery = $finalquery . " AND (light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"] . ")";
-    //wind speed
-    $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"]  . ")";
-
-    $year = substr($filter["lowDate"], 0, 4);
-    $month = substr($filter["lowDate"], 5, 7);
-    $day = substr($filter["lowDate"], 9, 11);
-    $startdate = $year . "-" . $month . "-" . $day . "T00:00:00";
-    $year = substr($filter["highDate"], 0, 4);
-    $month = substr($filter["highDate"], 5, 7);
-    $day = substr($filter["highDate"], 9, 11);
-    $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
-    $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
+    if ($checks["hasTemp"]) {
+        $finalquery = $finalquery . " AND (temp BETWEEN " . $filter["lowTemp"] . " AND " . $filter["highTemp"] . ")";
+    }
+    if ($checks["hasHumid"]) {
+        //humidity
+        $finalquery = $finalquery . " AND (humidity BETWEEN " . $filter["lowHumid"] . " AND " . $filter["highHumid"] . ")";
+    }
+    if ($checks["hasLight"]) {
+        //light
+        $finalquery = $finalquery . " AND (light BETWEEN " . $filter["lowLight"] . " AND " . $filter["highLight"] . ")";
+    }
+    if ($checks["hasWind"]) {
+        //wind speed
+        $finalquery = $finalquery . " AND (wind_speed BETWEEN " . $filter["lowSpeed"] . " AND " . $filter["highSpeed"] . ")";
+    }
+    if ($checks["hasPress"]) {
+        //pressure
+        $finalquery = $finalquery . " AND (pressure BETWEEN " . $filter["lowPress"] . " AND " . $filter["highPress"] . ")";
+    }
+    if ($checks["hasDate"]) {
+        $year = substr($filter["lowDate"], 0, 4);
+        $month = substr($filter["lowDate"], 5, 7);
+        $day = substr($filter["lowDate"], 9, 11);
+        $startdate = $year . "-" . $month . "-" . $day . "T00:00:00";
+        $year = substr($filter["highDate"], 0, 4);
+        $month = substr($filter["highDate"], 5, 7);
+        $day = substr($filter["highDate"], 9, 11);
+        $enddate = $year . "-" . $month . "-" . $day . "T00:00:00";
+        $finalquery = $finalquery . " AND (date BETWEEN '" . $startdate . "' AND '" . $enddate . "')";
+    }
     $results = runQuery($finalquery);
     for($r = 0; $r < mysqli_num_rows($results); $r++)
     {
@@ -389,7 +405,33 @@ function pullFilteredData($filter)
         $tempquery = "SELECT * FROM " . $GLOBALS['info_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
         $tmpresults = runQuery($tempquery);
         $tmprow = mysqli_fetch_assoc($tmpresults);
-        $jsona[$r] = array('alias' => $tmprow["alias"],'city' => $tmprow["City"],'state' => $tmprow["State"],'lat'=>$tmprow["Latitude"],'long'=>$tmprow["Longitude"],'date' => $row["date"],'temp' => $row["temp"], 'humidity' => $row["humidity"],'wind' => $row["wind_speed"],'light' => $row["light"],'pressure' => $row["pressure"]);
+        if ($checks["hasAlias"]) {
+            $jsona[$r]["alias"] = $tmprow["alias"];
+        }
+        if ($checks["hasLoc"]) {
+            $jsona[$r]["city"] = $tmprow["City"];
+            $jsona[$r]["state"] = $tmprow["State"];
+            $jsona[$r]["lat"] = $tmprow["Latitude"];
+            $jsona[$r]["long"] = $tmprow["Longitude"];
+        }
+        if ($checks["hasDate"]) {
+            $jsona[$r]["date"] = $tmprow["date"];
+        }
+        if ($checks["hasTemp"]) {
+            $jsona[$r]["temp"] = $tmprow["temp"];
+        }
+        if ($checks["hasHumid"]) {
+            $jsona[$r]["humidity"] = $tmprow["humidity"];
+        }
+        if ($checks["hasWind"]) {
+            $jsona[$r]["wind"] = $tmprow["wind_speed"];
+        }
+        if ($checks["hasLight"]) {
+            $jsona[$r]["light"] = $tmprow["light"];
+        }
+        if ($checks["hasPress"]) {
+            $jsona[$r]["pressure"] = $tmprow["pressure"];
+        }
     }
     $json = json_encode($jsona);
     return $json;
