@@ -2,6 +2,7 @@
     include_once('./header.php');
     include_once('./subnav.php');
 ?>
+<script src="Chart.js"></script>
 <div id="basic" class="content">
 <?php
 /**
@@ -22,6 +23,14 @@
 
 ?>
 </div>
+<canvas id="myChart" width="400" height="400"></canvas>
+
+
+<script type="application/javascript">
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var myNewChart = new Chart(ctx);
+</script>
+
 <?php
     include_once('./footer.php');
 ?>
