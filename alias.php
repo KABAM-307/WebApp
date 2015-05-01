@@ -24,6 +24,7 @@
     		})
     		.fail(function() {
     			$("#error").show();
+    			$("#data").remove();
     		})
     	
 	}
