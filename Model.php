@@ -192,14 +192,12 @@ function findClosestPi($lat, $long)
     $all_data = runQuery($query);
     $min_dist = -1;
     $date = date("Y-m-d G:i:s");
-    echo "Number of results: " . mysqli_num_rows($all_data) . "<br>";
+    $min_time = 2;
     for ($r = 0; $r < mysqli_num_rows($all_data); $r++) {
-        echo "R=" . $r . "<br>";
         $row = mysqli_fetch_assoc($all_data);
         $row_lat = $row["Latitude"];
         $row_lon = $row["Longitude"];
         $row_dist = getDistance($lat,$row_lat,$long,$row_lon,'M');
-        echo $row["alias"] . " distance is " . $row_dist . "<br>";
         if ($min_dist == -1 || $row_dist < $min_dist) {
             //check and see when last update for this pi_ID was
             $datequery = "SELECT * FROM " . $GLOBALS['data_tbl'] . " WHERE pi_ID='" . $row["pi_ID"] . "'";
@@ -211,18 +209,16 @@ function findClosestPi($lat, $long)
             #now on the last
             $daterow = mysqli_fetch_assoc($dateresults);
             $diff = (strtotime($date) - strtotime($daterow["date"]))/3600;
-            echo $row["alias"] . " updated on " . $daterow["date"] . "<br>";
-            echo "Difference: " . $diff . "<br>";
-            if ($diff <= 1.0) {
+            if ($diff <= 1.0 && $diff < $min_time) {
                 $pi_info["pi_ID"] = $row["pi_ID"];
                 $pi_info["zipcode"] = $row["zipcode"];
                 $min_dist = $row_dist;
+                $min_time = $diff;
             }
         }
     }
 
     if ($min_dist > 10 || $min_dist == -1) {
-      echo $min_dist;
       return false;
     } else {
       return  $pi_info;
@@ -449,9 +445,7 @@ function pullFilteredData($filter, $checks)
             $jsona[$r]["lat"] = $tmprow["Latitude"];
             $jsona[$r]["long"] = $tmprow["Longitude"];
         }
-        if ($checks["hasDate"]) {
-            $jsona[$r]["date"] = $row["date"];
-        }
+        $jsona[$r]["date"] = $row["date"];
         if ($checks["hasTemp"]) {
             $jsona[$r]["temp"] = $row["temp"];
         }
