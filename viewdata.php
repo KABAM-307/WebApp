@@ -12,6 +12,7 @@
 		<label><input type="checkbox" id="locCheckid" name="locCheck">location</input></label>
 		<label><input type="checkbox" id="tempCheckid" name="tempCheck">temperature</input></label>
 		<label><input type="checkbox" id="humidCheckid" name="humidCheck">humidity</input></label>
+		<label><input type="checkbox" id="pressCheckid" name="pressCheck">wind</input></label>
 		<label><input type="checkbox" id="lightCheckid" name="lightCheck">light</input></label>
 		<label><input type="checkbox" id="windCheckid" name="windCheck">wind</input></label>
 		<label><input type="checkbox" id="dateCheckid" name="dateCheck">date</input></label>
@@ -41,6 +42,13 @@
 			Enter a humidity range:<br>
 			low: <input type="number" name="lowHumid" size="7" min="0" max="100" value="20">
 			high: <input type="number" name="highHumid" size="7" min="0" max="100" value="80">
+			<br>
+		</fieldset>
+		<fieldset id="press" style="display:none">
+			<legend>Pressure</legend>
+			Enter a pressure range:<br>
+			low: <input type="number" name="lowPress" size="7" min="800" max="1200" value="900">
+			high: <input type="number" name="highPress" size="7" min="800" max="1200" value="1100">
 			<br>
 		</fieldset>
 		<fieldset id="light" style="display:none">
@@ -83,6 +91,9 @@
 	};
 	document.getElementById('humidCheckid').onchange = function() {
     	document.getElementById('humid').style.display = this.checked ? 'block' : 'none';
+	};
+	document.getElementById('pressCheckid').onchange = function() {
+    	document.getElementById('press').style.display = this.checked ? 'block' : 'none';
 	};
 	document.getElementById('lightCheckid').onchange = function() {
     	document.getElementById('light').style.display = this.checked ? 'block' : 'none';
